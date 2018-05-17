@@ -15,13 +15,7 @@ public:
         int row =  s.length() +1;
         int col =  p.length() +1;
 
-        bool dptable [row] [col];
-
-        for (int i = 0 ;  i < row ; i++) {
-            for( int j = 0; j < col; j++) {
-                dptable [i][j] = false;
-            }
-        }
+        vector<vector<bool>> dptable(row, vector<bool>(col, false));
 
         dptable[0][0] = true;
 
@@ -41,9 +35,6 @@ public:
                     if (p[j-2] == '.' || p[j-2] == s[i-1]) {
                         dptable[i][j] = dptable[i][j] || dptable[i-1][j];
                     }
-                }
-                else {
-                    dptable[i][j]=false;
                 }
             }
         }
