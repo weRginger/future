@@ -4,7 +4,7 @@ class Solution {
 public:
     vector< pair<int, int> > kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
     {
-        vector< pair<int, int> > result;
+        vector< pair<int, int>> result;
         int size1 = nums1.size();
         int size2 = nums2.size();
         if(size1 <= 0 || size2 <= 0 || k <= 0)
@@ -13,7 +13,7 @@ public:
         auto comp = [](pair<int, int> a, pair<int, int> b) {
             return a.first + a.second < b.first + b.second;
         };
-        priority_queue<pair<int, int>, vector< pair<int, int> >, decltype(comp)> que(comp);
+        priority_queue<pair<int, int>, vector< pair<int, int>>, decltype(comp)> que(comp);
 
         for(int i = 0; i < min(size1, k); i++) {
             for(int j = 0; j < min(size2, k); j++) {
@@ -50,11 +50,11 @@ public:
         auto comp = [&nums1, &nums2](pair<int, int> a, pair<int, int> b) {
             return nums1[a.first] + nums2[a.second] > nums1[b.first] + nums2[b.second];
         };
-        priority_queue<pair<int,int>, vector<pair<int, int> >, decltype(comp)> pq(comp);
+        priority_queue<pair<int,int>, vector<pair<int, int>>, decltype(comp)> pq(comp);
 
         int size1 = nums1.size();
         for(int i=0; i < min(k, size1); ++i) {
-            pq.push(make_pair( i, 0));
+            pq.push(make_pair(i, 0));
         }
 
         while(k-- > 0 && !pq.empty()) {
@@ -62,7 +62,7 @@ public:
             pq.pop();
             ret.push_back(curr);
             if(curr.second+1 == nums2.size()) continue;
-            pq.push(make_pair( curr.first, curr.second+1 ) );
+            pq.push(make_pair(curr.first, curr.second+1));
         }
 
         for(int i=0; i < ret.size(); ++i) {
