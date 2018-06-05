@@ -20,6 +20,7 @@ public:
         dptable[0][0] = true;
 
         // deal with pattern like a* or a*b*...
+        // could be used in line 37 by dptable[i-1][j]
         for (int i = 1 ; i < col; i++) {
             if (p[i-1] == '*') {
                 dptable[0][i] = dptable[0][i-2];
