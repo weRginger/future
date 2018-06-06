@@ -13,6 +13,8 @@ public:
         if(points.size()<2) return points.size();
         int result=0;
         for(int i=0; i<points.size(); i++) {
+            // need to use map instead of unordered_map
+            // since pair cannot be keys in unordered_map without a comparator
             map<pair<int, int>, int> lines;
             int localmax=0, overlap=0;
             for(int j=i+1; j<points.size(); j++) {
