@@ -5,11 +5,14 @@ private:
         int nr = grid.size();
         int nc = grid[0].size();
 
+        if (r < 0 || r >= nr || c < 0 || c >= nc || grid[r][c] == '0')
+            return;
+
         grid[r][c] = '0';
-        if (r - 1 >= 0 && grid[r-1][c] == '1') dfs(grid, r - 1, c);
-        if (r + 1 < nr && grid[r+1][c] == '1') dfs(grid, r + 1, c);
-        if (c - 1 >= 0 && grid[r][c-1] == '1') dfs(grid, r, c - 1);
-        if (c + 1 < nc && grid[r][c+1] == '1') dfs(grid, r, c + 1);
+        dfs(grid, r - 1, c);
+        dfs(grid, r + 1, c);
+        dfs(grid, r, c - 1);
+        dfs(grid, r, c + 1);
     }
 
 public:
