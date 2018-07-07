@@ -10,27 +10,29 @@
 class Solution {
 public:
     TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
-        stack<TreeNode*> st;
-        bool found=false;
-        if(!root)
-            return NULL;
-        while(!st.empty() || root) {
-            if(root) {
-                while(root) {
-                    st.push(root);
-                    root=root->left;
-                }
-            }
-            else {
-                root=st.top();
-                st.pop();
-                if(found)
-                    return root;
-                if(root == p)
-                    found=true;
-                root=root->right;
+        TreeNode* successor = NULL;
+        while (root != NULL && root->val != p->val) {
+            if (root->val > p->val) {
+                successor = root;
+                root = root->left;
+            } else {
+                root = root->right;
             }
         }
-        return NULL;
+
+        if (root == NULL) {
+            return NULL;
+        }
+
+        if (root->right == NULL) {
+            return successor;
+        }
+
+        root = root->right;
+        while (root->left != NULL) {
+            root = root->left;
+        }
+
+        return root;
     }
 };
