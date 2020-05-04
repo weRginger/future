@@ -1,4 +1,4 @@
-// Time: O(k*n); Space: O(1)
+// Time: O(kn); Space: O(1)
 class Solution {
 public:
     int minCostII(vector<vector<int>>& costs) {
