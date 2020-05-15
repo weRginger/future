@@ -18,8 +18,8 @@ public:
     }
 
     int find(int i) { // path compression
-        if (parent[i] != i) parent[i] = find(parent[i]);
-        return parent[i];
+        if (parents[i] == i) return parents[i];
+        return parents[i] = find(parents[i]);
     }
 
     void Union(int x, int y) { // union with rank
