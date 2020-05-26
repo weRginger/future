@@ -33,3 +33,29 @@ public:
         return dp[target];
     }
 };
+
+// Brute force
+class Solution3 {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        vector<int> cur;
+        int ans = 0;
+        int sum = 0;
+        helper(nums, target, cur, ans, sum);
+        return ans;
+    }
+private:
+    void helper(vector<int>& nums, int target, vector<int>& cur, int& ans, int& sum) {
+        if(sum == target) {
+            ans++;
+        } else if(sum < target) {
+            for(int i = 0; i < nums.size(); i++) {
+                sum += nums[i];
+                cur.push_back(nums[i]);
+                helper(nums, target, cur, ans, sum);
+                sum -= cur.back();
+                cur.pop_back();
+            }
+        }
+    }
+};
