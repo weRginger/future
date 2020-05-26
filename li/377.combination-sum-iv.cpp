@@ -4,20 +4,19 @@
 class Solution {
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        m_ = vector<int>(target + 1, -1);
         return dp(nums, target);
     }
 private:
     int dp(const vector<int>& nums, int target) {
         if(target < 0) return 0;
         if(target == 0) return 1;
-        if(m_[target] != -1) return m_[target];
+        if(mem.find(target) != mem.end()) return mem[target];
         int ans = 0;
         for(const int num : nums)
             ans += dp(nums, target - num);
-        return m_[target] = ans;
+        return mem[target] = ans;
     }
-    vector<int> m_;
+    unordered_map<int, int> mem;
 };
 
 // DP
