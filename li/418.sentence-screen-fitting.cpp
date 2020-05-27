@@ -16,14 +16,17 @@ public:
             while(len + sentence[prev % n].size() <= cols) len += sentence[prev++ % n].size() + 1;
             dp[i] = prev;
         }
+        
         int count = 0;
+        
+        // count how many words one row has and move to start of next row.
         for(int i = 0, k = 0; i < rows; ++i) {
-            // count how many words one row has and move to start of next row.
-            // It's better to check if d[k] == k but I find there is no test case on it.
-            // if(dp[k] == k) return 0;
+            // the reason to minus k from dp[k] due to how we construct the DP
+            // just run some example in the first for loop you will see why
             count += dp[k] - k;
             k = dp[k] % n;
         }
+        
         // divide by the number of words in sentence
         return count / n;
     }
