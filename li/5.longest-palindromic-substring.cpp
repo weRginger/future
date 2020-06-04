@@ -1,4 +1,5 @@
-// O(n^2)
+// time: O(n^2)
+// space: O(1)
 class Solution {
 public:
     string longestPalindrome(string s) {
@@ -10,12 +11,14 @@ public:
         int end = 0;
         for(int i = 0; i < ssize; i++) {
             int j = 0;
+            // expand around a single letter - abcxcba
             for(; i - j >= 0 && i + j < ssize && s[i-j] == s[i+j]; j++) {}
             j--;
             if(2 * j > end - begin) {
                 begin = i - j;
                 end = i + j;
             }
+            // expand around two letters - abccba
             for(j = 0; i - 1 - j >= 0 && i + j < ssize && s[i-1-j] == s[i+j]; j++) {}
             j--;
             if(2 * j + 1 > end - begin) {
