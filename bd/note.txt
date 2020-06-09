@@ -1,0 +1,1 @@
+Prepare all Q related to linked list.
