@@ -1,5 +1,12 @@
 // Time O(n)
 // Space O(1) since at most 26 chars
+/*
+As we iterate over our string, if character i is greater than character i+1 and another occurrence
+of character i exists later in the string, deleting character i will always lead to the optimal 
+solution. Characters that come later in the string i don't matter in this calculation because i 
+is in a more significant spot. Even if character i+1 isn't the best yet, we can always replace it 
+for a smaller character down the line if possible.
+*/
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
