@@ -1,3 +1,25 @@
+// Time O(n) since inner for loop is constant
+// Space O(1) since size of last vector is 10
+class Solution {
+public:
+    int maximumSwap(int num) {
+        string A = to_string(num);
+        vector<int> last(10, -1);
+        for(int i = 0; i < A.size(); i++) {
+            last[A[i] - '0'] = i;
+        }
+        for(int i = 0; i < A.size(); i++) {
+            for(int d = 9; d > A[i] - '0'; d--) {
+                if(last[d] > i) {
+                    swap(A[i], A[last[d]]);
+                    return stoi(A);
+                }
+            }
+        }
+        return num;
+    }
+};
+
 // Time O(n)
 // Space O(n)
 // By Ziqi
