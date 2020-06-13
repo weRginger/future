@@ -1,6 +1,6 @@
 Prepare all Q related to linked list.
 
-632, 6, 41, 4, 689, 139, 670, 105, 19, 1296, 980, 89
+4, 689, 139, 670, 105, 19, 1296, 980, 89
 
 经典倒水问题 https://zhuanlan.zhihu.com/p/65065359
 
