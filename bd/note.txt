@@ -1,6 +1,6 @@
 Prepare all Q related to linked list.
 
-1296, 980, 89
+980
 
 经典倒水问题 https://zhuanlan.zhihu.com/p/65065359
 
