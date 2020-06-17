@@ -4,8 +4,14 @@ Prepare all Q related to linked list.
 
 system design: monitor application resource usage in cloud
 
-tinyURL
+System Design : Design a service like TinyUrl
+https://www.youtube.com/watch?v=fMZMm_0ZhK4
 
-Tail recursion https://www.geeksforgeeks.org/tail-recursion/
+System design : Design Autocomplete or Typeahead Suggestions for Google search 
+https://www.youtube.com/watch?v=us0qySiUsGU
+
+Tail recursion 
+https://www.geeksforgeeks.org/tail-recursion/
 
 Trie tree https://www.geeksforgeeks.org/trie-insert-and-search/
+https://www.youtube.com/watch?v=AXjmTQ8LEoI
