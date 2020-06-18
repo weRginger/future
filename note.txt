@@ -1,4 +1,5 @@
-A mutex is NOT a binary semaphore. Semaphores can be signaled and waited on by any thread, whereas a mutex lock can only be released (unlocked) by the thread that acquired (locked) it.
+A mutex is NOT a binary semaphore. Semaphores can be signaled and waited on by any thread, 
+whereas a mutex lock can only be released (unlocked) by the thread that acquired (locked) it.
 
 经典倒水问题 https://zhuanlan.zhihu.com/p/65065359
 
