@@ -129,5 +129,4 @@ int main()
 	printf("Diameter of the given binary tree is %d\n", diameter(root)); 
 
 	return 0; 
-} 
-
+}
