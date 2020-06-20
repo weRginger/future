@@ -20,20 +20,18 @@ class Solution {
     }
 
     int mergesort_and_count(vector<int>& A, int start, int end) {
-        if (start < end) {
-            int mid = (start + end) / 2;
-            int count = mergesort_and_count(A, start, mid) + mergesort_and_count(A, mid + 1, end);
-            int j = mid + 1;
-            for (int i = start; i <= mid; i++) {
-                while (j <= end && A[i] > A[j] * 2LL)
-                    j++;
-                count += j - (mid + 1);
-            }
-            merge(A, start, mid, end);
-            return count;
+        if (start >= end) return 0;
+        
+        int mid = (start + end) / 2;
+        int count = mergesort_and_count(A, start, mid) + mergesort_and_count(A, mid + 1, end);
+        int j = mid + 1;
+        for (int i = start; i <= mid; i++) {
+            while (j <= end && A[i] > A[j] * 2LL) 
+                j++;
+            count += j - (mid + 1);
         }
-        else
-            return 0;
+        merge(A, start, mid, end);
+        return count;
     }
     
 public:
