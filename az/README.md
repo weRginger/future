@@ -1,4 +1,4 @@
-1. MST
+1. Minimum Spanning Tree - LC1135
 2. reorder log - LC937
 3. 组装零件/文件合并
 4. Amazon Fresh送货(k closest points to origin)'
