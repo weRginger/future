@@ -44,12 +44,11 @@ public:
 };
 
 class Solution {
-private:
-    static bool comp(vector<int>& a, vector<int>& b) {
-        return a[2] < b[2];
-    }
 public:
     int minimumCost(int N, vector<vector<int>>& connections) {
+        auto comp = [](vector<int>& a, vector<int>& b) {
+            return a[2] < b[2];
+        };
         sort(connections.begin(), connections.end(), comp);
         int res = 0;
         UF uf(N);
@@ -65,6 +64,3 @@ public:
         return -1;
     }
 };
-
-
-
