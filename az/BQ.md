@@ -1,4 +1,4 @@
-** Why Amazon? **
+# Why Amazon?
 Amazon is a top internet retailing company with a strong focus on customer experience and obsession. Its motto- work hard, have fun, make history, and it’s vision, earth’s most customer centric company, inspires me. I’m a person who respect hard working and care a lot about customer experience, so the culture of Amazon attracts me a lot. Furthermore, the growth of this company is pretty impressive, it’s not only an online retail shop but also has a wide range of products like Alexa, Kindle, fire tablet and TV, Amazon cloud service, etc. Hundreds of thousands of talented engineers are working passionately here, building innovative system and solving problems at unprecedented scale. Therefore, this is a place where I can learn a lot, and use my skills and experience to make things happen with a team.
 
 Why choose this position?
@@ -163,6 +163,3 @@ what you’d do after you realized you couldn’t hit the date?
 First, I’d check every possible way that could possibly make me hit the date, like using after-work time, weekends, or holidays, asking for help or suggestions, finding alternatives or simpler solutions, etc. Since I am the owner of the tasks, it’s my responsibility to deliver results on time. It’s my fault that I underestimated the workload when I took the tasks.
 There was one time that we couldn’t finish the troubleshooting of a bug on time, the system should have sent out auto emails at 7:00 am but sometimes it failed. Before solving the problem, I will check each morning and manually trigger emails to the client.
 If I still couldn’t hit the date, I would look at features, pick out a few with highest priority that I could finish, and then discuss about the problem with the project manager. Of course, I would apologize first and then try to discuss about the best solution to minimize the impacts. Once the project manager agrees, I would notify all the people that could be impacted by the delay.
-
-
-
