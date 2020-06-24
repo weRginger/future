@@ -1,52 +1,25 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        vector<int> counts(26, 0);
-        for (char t : tasks) {
-            counts[t - 'A']++;
+        vector<int> frequencies(26, 0);
+        for(auto t : tasks) {
+            frequencies[t - 'A']++;
         }
-        priority_queue<int> pq;
-        for (auto count : counts) {
-            if(count)
-                pq.push(count);
+        sort(frequencies.begin(), frequencies.end(), greater<>());
+        // max frequency
+        int f_max = frequencies[0];
+        int idle_time = (f_max - 1) * n;
+        for(int i = 1; i < frequencies.size() && idle_time > 0; ++i) {
+            if(frequencies[i] == f_max)
+                // idle_time = (f_max - 1) * n, but we need take one more slot after the last task 
+                idle_time -= frequencies[i] - 1; 
+            else
+                idle_time -= frequencies[i]; 
         }
-        int alltime = 0;
-        int cycle = n + 1;
-        while (!pq.empty()) {
-            int time = 0;
-            vector<int> tmp;
-            for (int i = 0; i < cycle; i++) {
-                if (!pq.empty()) {
-                    tmp.push_back(pq.top());
-                    pq.pop();
-                    time++;
-                }
-            }
-            for (int cnt : tmp) {
-                if (--cnt) {
-                    pq.push(cnt);
-                }
-            }
-            alltime += !pq.empty() ? cycle : time;
-        }
-        return alltime;
-    }
-};
-
-// Author: Huahua
-// Runtime: 56 ms
-class Solution {
-public:
-    int leastInterval(vector<char>& tasks, int n) {
-        vector<int> count(26, 0);
-        for (const char task : tasks)
-            ++count[task - 'A'];
-        const int max_count = *max_element(count.begin(), count.end());
-        size_t ans = (max_count - 1) * (n + 1);
-        ans += count_if(count.begin(), count.end(),
-        [max_count](int c) {
-            return c == max_count;
-        });
-        return max(tasks.size(), ans);
+        // in case idle_time has turned into negative
+        idle_time = max(0, idle_time);
+        return idle_time + tasks.size();
     }
 };
