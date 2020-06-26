@@ -11,6 +11,7 @@ public:
     int max_l = height[l];
     int max_r = height[r];
     int ans = 0;
+    // cannot use l <= r since if input is [0], height[--r] will access height[-1]
     while (l < r) {      
       if (max_l < max_r) {
         ans += max_l - height[l];
