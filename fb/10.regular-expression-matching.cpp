@@ -41,6 +41,5 @@ public:
         }
 
         return dptable[s.length()][p.length()];
-
     }
 };
