@@ -1,12 +1,5 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+// Time O(n)
+// Space O(n)
 class Codec {
 public:
     // Encodes a tree to a single string.
@@ -35,7 +28,7 @@ public:
         if (pos >= buffer.size()) return NULL; //using pos to check whether buffer ends is better than using char* directly.
 
         int value;
-        memcpy(&value, &buffer[pos], sizeof(int));
+        memcpy(&value, &(buffer[pos]), sizeof(int));
         if (value < minValue || value > maxValue) return NULL;
 
         TreeNode* node = new TreeNode(value);
@@ -45,6 +38,16 @@ public:
         return node;
     }
 };
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
