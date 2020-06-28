@@ -1,3 +1,5 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
@@ -15,7 +17,7 @@ public:
         }
         reverse(nums, 0);
     }
-
+private:
     void reverse(vector<int>& nums, int start) {
         int end = nums.size() - 1;
         while(start < end) {
