@@ -1,3 +1,5 @@
+// Time O(n^2)
+// Space O(n)
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
