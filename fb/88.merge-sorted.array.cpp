@@ -1,3 +1,5 @@
+// Time O(m+n)
+// Space O(1)
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
