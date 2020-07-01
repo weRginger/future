@@ -1,3 +1,5 @@
+// Time O(n)
+// Space O(h), where h is recursion depth
 class Solution {
 public:
     int calculate(string s) {
