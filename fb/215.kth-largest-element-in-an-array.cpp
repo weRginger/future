@@ -6,8 +6,9 @@ private:
         int pivot = nums[left];
         int l = left + 1;
         int r = right;
-        // must be <= 
-        // if use <, then when l == r, we cannot move r in front of l and it leads to error
+        // Must be <= 
+        // If use <, then when l == r, we will break the while loop too early 
+        // and miss to check nums[l] (i.e. nums[r]) against pivot
         while(l <= r) {
             if(nums[l] < pivot && nums[r] >= pivot) {
                 swap(nums[l++], nums[r--]);
