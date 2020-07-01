@@ -1,15 +1,19 @@
+// Time O(n) on average, O(n^2) on worst
+// Space O(1)
 class Solution {
 private:
     int partition(vector<int>& nums, int left, int right) {
         int pivot = nums[left];
         int l = left + 1;
         int r = right;
+        // must be <= 
+        // if use <, then when l == r, we cannot move r in front of l and it leads to error
         while(l <= r) {
-            if(nums[l] < pivot && nums[r] > pivot) {
+            if(nums[l] < pivot && nums[r] >= pivot) {
                 swap(nums[l++], nums[r--]);
             }
             if(nums[l] >= pivot) l++;
-            if(nums[r] <= pivot) r--;
+            if(nums[r] < pivot) r--;
         }
         swap(nums[left], nums[r]);
         return r;
