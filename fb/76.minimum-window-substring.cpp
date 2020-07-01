@@ -1,3 +1,5 @@
+// Time O(|t| + |s|), where |t| to construct the vector and 2*|s| to move start and end
+// Space O(1)
 class Solution {
 public:
     string minWindow(string s, string t) {
