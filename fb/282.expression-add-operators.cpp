@@ -1,39 +1,48 @@
+// Time O(n*(4^n))
+// Space O(n)
 class Solution {
 public:
-
-    void addOperators(string num,int target,string curr,int sum,int last,vector<string> &res) {
-        if(num.empty()) {
-            if(target == sum) {
-                res.push_back(curr);
-            }
-            return;
-        }
-
-        for(int i = 0; i < num.size(); ++i) {
-            string sub = num.substr(0,i + 1);
-
-            if(sub.size() > 1 && sub[0] == '0') {
-                continue;
-            }
-
-            istringstream ss(sub);
-            int n = 0;
-            ss >> n;
-
-            if(curr.empty()) {
-                addOperators(num.substr(i + 1),target,sub,n,n,res);
-            }
-            else {
-                addOperators(num.substr(i + 1),target,curr +  "+" + sub,sum + n,n,res);
-                addOperators(num.substr(i + 1),target,curr +  "-" + sub,sum - n,-n,res);
-                addOperators(num.substr(i + 1),target,curr +  "*" + sub,(sum - last) + last*n ,last*n,res);
-            }
-        }
+  vector<string> addOperators(string num, int target) {
+    vector<string> ans;
+    // tracking back "exp" is the key to pass TLE
+    string exp = "";
+    dfs(num, target, 0, exp, 0, 0, &ans);
+    return ans;
+  }
+private:
+  void dfs(const string& num, const int target,  // input
+           int pos, string& exp, long prev, long curr, // state
+           vector<string>* ans) {  // output
+    if (pos == num.length()) {
+      if (curr == target) ans->push_back(exp);
+      return;
     }
-
-    vector<string> addOperators(string num, int target) {
-        vector<string> res;
-        addOperators(num,target,"",0,0,res);
-        return res;
-    }
+    
+    for (int l = 1; l <= num.size() - pos; ++l) {
+      string t = num.substr(pos, l);    
+      if (t[0] == '0' && t.length() > 1) break; // 0X...
+      long n = std::stol(t);
+      if (n > INT_MAX) break;
+      if (pos == 0) {
+        dfs(num, target, l, t, n, n, ans);
+        continue;
+      }
+      int len = exp.size();
+      exp += '+' + t;
+      dfs(num, target, pos + l, exp, n, curr + n, ans);
+      exp.resize(len);
+      exp += '-' + t;
+      dfs(num, target, pos + l, exp, -n, curr - n, ans);
+      exp.resize(len);
+      exp += '*' + t;
+      dfs(num, target, pos + l, exp, prev * n, curr - prev + prev * n, ans);
+      exp.resize(len);
+      /*
+      Following code will cause TLE since each recursion creats a copy of exp
+      dfs(num, target, pos + l, exp + '+' + t, n, curr + n, ans);
+      dfs(num, target, pos + l, exp + '-' + t, -n, curr - n, ans);
+      dfs(num, target, pos + l, exp + '*' + t, prev * n, curr - prev + prev * n, ans);
+      */
+    }    
+  }
 };
