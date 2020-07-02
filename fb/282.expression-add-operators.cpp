@@ -6,15 +6,15 @@ public:
     vector<string> ans;
     // tracking back "exp" is the key to pass TLE
     string exp = "";
-    dfs(num, target, 0, exp, 0, 0, &ans);
+    dfs(num, target, 0, exp, 0, 0, ans);
     return ans;
   }
 private:
   void dfs(const string& num, const int target,  // input
            int pos, string& exp, long prev, long curr, // state
-           vector<string>* ans) {  // output
+           vector<string>& ans) {  // output
     if (pos == num.length()) {
-      if (curr == target) ans->push_back(exp);
+      if (curr == target) ans.push_back(exp);
       return;
     }
     
