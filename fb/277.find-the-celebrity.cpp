@@ -1,5 +1,7 @@
 // Best solution since the Q asks to minimize calling of knows()
-// Time O(n)
+// Time O(n) - Note, in the following code, since we used "map", it costs O(nlogn).
+//             To reduce to O(n), we can use "unordered_map" but need to provide 
+//             hash func to "pair" as unordered_map does not have default key hash to pair
 // Space O(n)
 class Solution {
 public:
