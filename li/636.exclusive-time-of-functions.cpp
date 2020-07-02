@@ -44,23 +44,23 @@ public:
     vector<int> exclusiveTime(int n, vector<string>& logs) {
         if(logs.empty() | n <= 0) return vector<int> {};
         vector<int> ans(n, 0);
-        stack<pair<int, int>> st;
+        stack<int> st;
         int pre = 0;
         for(auto i : logs) {
             vector<string> vs = split(i, ':');
             if(st.empty()) {
-                st.push(make_pair(stoi(vs[0]), stoi(vs[2])));
+                st.push(stoi(vs[0]));
             }
             else {
-                pair<int, int> p = st.top();
+                int p = st.top();
                 if(vs[1] == "start") {
-                    ans[p.first] += stoi(vs[2]) - pre;
-                    st.push(make_pair(stoi(vs[0]), stoi(vs[2])));
+                    ans[p] += stoi(vs[2]) - pre;
+                    st.push(stoi(vs[0]));
                     pre = stoi(vs[2]);
                 }
                 else {
                     st.pop();
-                    ans[p.first] += stoi(vs[2]) - pre + 1;
+                    ans[p] += stoi(vs[2]) - pre + 1;
                     pre = stoi(vs[2]) + 1;
                 }
             }
