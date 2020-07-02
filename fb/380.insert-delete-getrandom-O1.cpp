@@ -1,3 +1,5 @@
+// Time O(1) per operation
+// Space O(n)
 class RandomizedSet {
 public:
     /** Initialize your data structure here. */
@@ -31,51 +33,6 @@ public:
 private:
     vector<int> nums;
     unordered_map<int, int> m;
-};
-
-// By Ziqi
-class RandomizedSet {
-private:
-    unordered_map<int, int> index;
-    unordered_map<int, int> reverseIndex;
-public:
-    /** Initialize your data structure here. */
-    RandomizedSet() {
-
-    }
-
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
-    bool insert(int val) {
-        if(!reverseIndex.count(val)) {
-            reverseIndex[val] = index.size();
-            index[index.size()] = val;
-            return true;
-        }
-        return false;
-    }
-
-    /** Removes a value from the set. Returns true if the set contained the specified element. */
-    bool remove(int val) {
-        if(reverseIndex.count(val)) {
-            int idx = reverseIndex[val];
-            int lastVal;
-            if(index.size() > 1) {
-                lastVal = index[index.size() - 1];
-                index[idx] = lastVal;
-                reverseIndex[lastVal] = idx;
-            }
-            reverseIndex.erase(val);
-            index.erase(index.size() - 1);
-            return true;
-        }
-        return false;
-    }
-
-    /** Get a random element from the set. */
-    int getRandom() {
-        int num = random() % index.size();
-        return index[num];
-    }
 };
 
 /**
