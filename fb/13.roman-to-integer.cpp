@@ -1,3 +1,5 @@
+// Time O(1), since input is less than 3999
+// Space O(1)
 class Solution {
 public:
     int romanToInt(string s) {
