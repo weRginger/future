@@ -16,16 +16,22 @@ public:
                 j++;
             }
             else if(p[j] == '*') {
+                // Mark the next char to match in s by this '*',
+                // if in the future we found no match in p
+                // In this step, we just start to match zero chars in s
                 preS = i + 1;
+                // Mark where latest * is and move forward
                 preP = j++;
             }
-            else if(preP == -1) 
-                return false;
+            else if(preP == -1) // s[i] != p[j]
+                return false; // no * exist before and no way to match
             else {
+                // rewind to the latest * position and let the * match one more char to try again
                 i = preS;
                 j = preP;
             }
         }
+        // corner case of trailing * in p
         while(p[j] == '*') 
             j++;
         return j==P;
