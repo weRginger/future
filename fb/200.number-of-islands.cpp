@@ -1,4 +1,6 @@
 // dfs
+// Time O(m*n)
+// Space O(m*n)
 class Solution {
 private:
     void dfs(vector<vector<char>>& grid, int r, int c) {
@@ -36,6 +38,8 @@ public:
 };
 
 // bfs
+// Time O(m*n)
+// Space O(min(m,n))
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
@@ -81,6 +85,8 @@ public:
 };
 
 // union find
+// Time O(m*n)
+// Space O(m*n)
 class UnionFind {
 public:
     UnionFind(vector<vector<char>>& grid) {
