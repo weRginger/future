@@ -1,3 +1,5 @@
+// Time O(max(|a|,|b|))
+// Space O(max(|a|,|b|))
 class Solution {
 public:
     string addBinary(string a, string b) {
