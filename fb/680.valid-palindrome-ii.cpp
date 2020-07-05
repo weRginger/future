@@ -20,3 +20,26 @@ public:
         return i>=j || i1>=j1 || i2>=j2;
     }
 };
+
+class Solution {
+private:
+    bool isPalindrome(const string& s, int i, int j) {
+        for (int k = i; k <= i + (j - i) / 2; k++) {
+            if (s[k] != s[j - k + i]) 
+                return false;
+        }
+        return true;
+    }
+public:
+    bool validPalindrome(string s) {
+        int ssize = s.size();
+        for (int i = 0; i < ssize / 2; i++) {
+            if (s[i] != s[ssize - 1 - i]) {
+                int j = ssize - 1 - i;
+                return (isPalindrome(s, i+1, j) ||
+                        isPalindrome(s, i, j-1));
+            }
+        }
+        return true;
+    }
+};
