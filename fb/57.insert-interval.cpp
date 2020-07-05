@@ -1,24 +1,17 @@
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
-    vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
-        vector<Interval> res;
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> res;
         int index = 0;
         int s = intervals.size();
-        while(index < s && intervals[index].end < newInterval.start) {
+        while(index < s && intervals[index][1] < newInterval[0]) {
             res.push_back(intervals[index++]);
         }
-        while(index < s && intervals[index].start <= newInterval.end) {
-            newInterval.start = min(newInterval.start, intervals[index].start);
-            newInterval.end = max(newInterval.end, intervals[index].end);
+        while(index < s && intervals[index][0] <= newInterval[1]) {
+            newInterval[0] = min(newInterval[0], intervals[index][0]);
+            newInterval[1] = max(newInterval[1], intervals[index][1]);
             index++;
         }
         res.push_back(newInterval);
