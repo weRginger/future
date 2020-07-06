@@ -1,3 +1,5 @@
+// Time O(1) per get/put
+// Space O(capacity)
 class LRUCache {
 public:
     LRUCache(int capacity) : _capacity(capacity) {}
