@@ -1,3 +1,5 @@
+// Time O(n*l), where l = len(word), n=|wordList|
+// Space O(n)
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
