@@ -1,20 +1,14 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     bool isPalindrome(string s) {
-        int j = s.length() - 1;
-        for (int i = 0; i < j; i++, j--) {
-            while (isalnum(s.at(i)) == false) {
-                if (++i > j)
-                    return true;
-            }
-
-            while (isalnum(s.at(j)) == false) {
-                if (--j < i)
-                    return true;
-            }
-
-            if ( tolower(s.at(i)) != tolower(s.at(j)) )
-                return false;
+        int l = 0, r = s.size() - 1;
+        while(l < r) {
+            while(l < r && !isalnum(s[l])) l++;
+            while(l < r && !isalnum(s[r])) r--;
+            if(l >= r) return true;
+            if(tolower(s[l++]) != tolower(s[r--])) return false;
         }
         return true;
     }
