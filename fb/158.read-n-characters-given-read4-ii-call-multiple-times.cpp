@@ -1,7 +1,11 @@
-// Forward declaration of the read4 API.
-int read4(char *buf);
-
+// Time O(n)
+// Space O(1)
 class Solution {
+private:
+    char cache[4];
+    int i = 4; // index
+    int p = 4; // valid number of characters in cache
+    
 public:
     /**
      * @param buf Destination buffer
@@ -16,15 +20,13 @@ public:
             }
             if (len == n)
                 return len;
-            p = read4(cache);
-            if (p == 0)
-                return len;
-            i = 0;
+            else { // i == p, which means cache is empty and need to load a new batch
+                p = read4(cache);
+                if (p == 0)
+                    return len;
+                i = 0; 
+            }
         }
         return len;
     }
-private:
-    char cache[4];
-    int i = 4; // index
-    int p = 4; // valid number of characters in cache
 };
