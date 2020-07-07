@@ -1,5 +1,5 @@
 // Time O(n)
-// Space O(n)
+// Space O(H)
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
