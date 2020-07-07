@@ -10,7 +10,7 @@ public:
             int parentVal = node->val;
             if(pVal > parentVal && qVal > parentVal) {
                 node = node->right;
-            } else if (pVal < parentVal && qVal < parentVal) {
+            } else if(pVal < parentVal && qVal < parentVal) {
                 node = node->left;
             } else {
                 return node;
