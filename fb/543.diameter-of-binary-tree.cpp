@@ -1,12 +1,5 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+// Time O(n)
+// Space O(n)
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
@@ -25,3 +18,13 @@ private:
         return max(l, r);
     }
 };
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
