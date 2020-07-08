@@ -4,7 +4,6 @@
 class Solution {
 public:
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        
         unordered_set<string> dict(wordList.begin(), wordList.end());        
         if (!dict.count(endWord)) return {};
         dict.erase(beginWord);
@@ -64,7 +63,7 @@ private:
                   const string& beginWord, 
                   const unordered_map<string, vector<string>>& parents,
                   vector<string>& curr,
-                  vector<vector<string>>& ans) {        
+                  vector<vector<string>>& ans) {
         
         if (word == beginWord) {
             ans.push_back(vector<string>(curr.rbegin(), curr.rend()));
