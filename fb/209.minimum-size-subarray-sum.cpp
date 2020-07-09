@@ -1,15 +1,17 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
         int ans = INT_MAX;
-        int left = 0;
+        int start = 0;
         int sum = 0;
-        for (int i = 0; i < n; i++) {
-            sum += nums[i];
+        for (int end = 0; end < n; end++) {
+            sum += nums[end];
             while (sum >= s) {
-                ans = min(ans, i + 1 - left);
-                sum -= nums[left++];
+                ans = min(ans, end + 1 - start);
+                sum -= nums[start++];
             }
         }
         return (ans != INT_MAX) ? ans : 0;
