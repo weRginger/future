@@ -1,7 +1,7 @@
 // https://zxi.mytechroad.com/blog/graph/leetcode-399-evaluate-division/
 // DFS
-// Time O(E*Q), where E is num of edges and Q is num of queries
-// Time can be reduced to O(Q) if we use memoization 
+// Time O(E+E*Q), where E is num of edges and Q is num of queries
+// Time can be reduced to O(E+Q) if we use memoization 
 // Space O(E)
 class Solution {
 public:
@@ -48,7 +48,7 @@ private:
 };
 
 // Union-Find
-// Time O(Q)
+// Time O(E+Q)
 // Space O(E)
 class Solution {
 public:
