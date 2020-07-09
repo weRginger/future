@@ -40,8 +40,8 @@ private:
             const string& C = pair.first;
             if (visited.count(C)) continue;
             double d = divide(C, B, g, visited); // d = C / B
-            // A / B = C / B * A / C
-            if (d > 0) return d * g[A][C];
+            // A / B = A / C * C / B 
+            if (d > 0) return g[A][C] * d;
         }        
         return -1.0;
     }
