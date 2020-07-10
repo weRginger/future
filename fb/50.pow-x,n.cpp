@@ -1,19 +1,20 @@
+// Time O(logn)
+// Space O(1)
 class Solution {
 public:
     double myPow(double x, int n) {
-        double ans = 1;
-        unsigned long long p;
-        if (n < 0) {
-            p = -n;
+        long N = n;
+        if(N < 0) {
             x = 1 / x;
-        } else {
-            p = n;
+            N = -N;
         }
-        while (p) {
-            if (p & 1)
-                ans *= x;
-            x *= x;
-            p >>= 1;
+        double ans = 1;
+        double current_product = x;
+        while(N) {
+            if(N & 1) 
+                ans = ans * current_product;
+            current_product = current_product * current_product;
+            N >>= 1;
         }
         return ans;
     }
