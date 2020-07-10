@@ -41,7 +41,7 @@ private:
             if (visited.count(C)) continue;
             double d = divide(C, B, g, visited); // d = C / B
             // A / B = A / C * C / B 
-            if (d > 0) return g[A][C] * d;
+            if (d != -1.0) return g[A][C] * d;
         }        
         return -1.0;
     }
