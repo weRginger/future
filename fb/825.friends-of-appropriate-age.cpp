@@ -1,3 +1,5 @@
+// Time O(A^2+N), where N is the number of people, and A is the number of ages
+// Space O(A)
 class Solution {
 public:
     int numFriendRequests(vector<int>& ages) {
