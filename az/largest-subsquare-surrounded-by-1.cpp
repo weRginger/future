@@ -1,5 +1,6 @@
 // A C++ program to find the largest subsquare
 // surrounded by '1' in a given matrix of '0' and '1'
+// different impl here at https://www.youtube.com/watch?v=vi_1eHCsR9A
 #include<iostream>
 using namespace std;
 
