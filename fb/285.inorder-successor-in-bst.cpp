@@ -1,38 +1,29 @@
+// Time O(H), where H is tree height
+// Space O(1)
 /**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
+ * We start from the root, utilizing the property of BST:
+ *   - If current node's value is less than or equal to p's value, we know our 
+ *     answer must be in the right subtree.
+ *   - If current node's value is greater than p's value, current node is a 
+ *     candidate. Go to its left subtree to see if we can find a smaller one.
+ *   - If we reach null, our search is over, just return the candidate.
  */
-class Solution {
+class Solution { 
 public:
     TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
-        TreeNode* successor = NULL;
-        while (root != NULL && root->val != p->val) {
-            if (root->val > p->val) {
-                successor = root;
-                root = root->left;
+        TreeNode* candidate = NULL;
+        TreeNode* cur = root;
+
+        while(cur) {
+            if (cur->val > p->val) {
+                candidate = cur;
+                cur = cur->left;
             } else {
-                root = root->right;
+                // cur->val <= p->val
+                cur = cur->right;
             }
         }
 
-        if (root == NULL) {
-            return NULL;
-        }
-
-        if (root->right == NULL) {
-            return successor;
-        }
-
-        root = root->right;
-        while (root->left != NULL) {
-            root = root->left;
-        }
-
-        return root;
+        return candidate;
     }
 };

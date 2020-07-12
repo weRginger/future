@@ -1,23 +1,72 @@
+// Time O(n)
+// Space O(1)
 class Solution {
-public:
-    string numberToWords(int num) {
-        if(num == 0) return "Zero";
-        vector<string>thousands({"", " Thousand", " Million", " Billion"});
-        string res = "";
-        int i = 0;
-        while(num) {
-            if(num % 1000) res = helper(num % 1000) + thousands[i] + (res.size() ? " " : "") + res;
-            num /= 1000;
-            i++;
+    vector<string> mOneDigitNumberTotext = {"", "One", "Two", "Three",
+                                            "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    vector<string> mTensInText = {"", "Ten", "Twenty", "Thirty", 
+                                  "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+
+    string TwoDigitNumberToText (int n) {
+        string result = "";
+        if(n > 19) {
+            result += mTensInText[n/10];
+            if(n % 10 > 0) {
+                result += " " + mOneDigitNumberTotext[n%10];
+            }
+            return result;
+        } else {
+            switch (n) {
+                case 11:
+                    return "Eleven";
+                case 12:
+                    return "Twelve";
+                case 13:
+                    return "Thirteen";
+                case 14:
+                    return "Fourteen";
+                case 15:
+                    return "Fifteen";
+                case 16:
+                    return "Sixteen";
+                case 17:
+                    return "Seventeen";
+                case 18:
+                    return "Eighteen";
+                case 19:
+                    return "Nineteen";
+                default:
+                    return mTensInText[n/10];
+            }
         }
-        return res;
     }
 
-    string helper(int num) {
-        vector<string>lessThan20({"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"});
-        vector<string>tens({"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"});
-        if(num >= 100) return lessThan20[num / 100] + " Hundred" + (num % 100 ? " ": "") + helper(num % 100);
-        else if(num >= 20) return tens[num / 10] + (num % 10 ? " ": "") + helper(num % 10);
-        else return lessThan20[num];
+    string ThreeDigitNumberToText (int n) {
+        int d0 = n/100; // 100's palce
+        int d1 = (n%100)/10; // ten's place
+        int d2 = n%100; // one's place
+        string result = "";
+        if (d0 > 0) result += mOneDigitNumberTotext[d0] + " Hundred ";
+        if (d1 > 0)
+            result += TwoDigitNumberToText(n%100);
+        else 
+            result += mOneDigitNumberTotext[d2];
+        if (result[result.length()-1] == ' ') return result.substr(0, result.length()-1);
+        return result;
+    }
+    
+public:
+    string numberToWords(int n) {
+        if (n == 0) return "Zero"; // handle zero case
+        int d0 = n/1000000000; // billion's digits
+        int d1 = (n%1000000000)/1000000; // million's digits
+        int d2 = (n%1000000)/1000; // thousand's digits
+        int d3 = (n%1000);  // hundred's digits
+        string result = "";
+        if (d0 > 0) result += ThreeDigitNumberToText(d0) + " Billion ";
+        if (d1 > 0) result += ThreeDigitNumberToText(d1) + " Million ";
+        if (d2 > 0) result += ThreeDigitNumberToText(d2) + " Thousand ";
+        if (d3 > 0) result += ThreeDigitNumberToText(d3);
+        if (result[result.size()-1] == ' ') return result.substr(0, result.length()-1);
+        return result;
     }
 };

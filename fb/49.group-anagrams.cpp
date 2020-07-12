@@ -1,40 +1,24 @@
-// Time: O(n*k*logk)
-// Space: O(n*k)
+// Time O(NK) - N is the length of strs, and K is the maximum length of a string in strs
+// Space O(NK)
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> ans;
-        if(strs.empty()) return ans;
-        unordered_map<string, vector<string>> mp;
+        unordered_map<string, vector<string>> um;
         for(auto s : strs) {
-            string cur = s;
-            sort(s.begin(),s.end());
-            mp[s].push_back(cur);
+            um[hash(s)].push_back(s);
         }
-        for(auto e : mp) {
-            ans.push_back(e.second);
+        for(auto i : um) {
+            ans.push_back(i.second);
         }
         return ans;
     }
-};
-
-// Time: O(n*k)
-// Space: O(n*k)
-class Solution {
-public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<vector<string>> res;
-        unordered_map<string, vector<string>> m;
-        for (string str : strs) {
-            vector<int> cnt(26, 0);
-            string t = "";
-            for (char c : str) ++cnt[c - 'a'];
-            for (int d : cnt) t += to_string(d) + "/";
-            m[t].push_back(str);
+private:
+    string hash(const string& s) {
+        string h(26,0);
+        for(int i = 0; i < s.size(); i++) {
+            h[s[i] - 'a']++;
         }
-        for (auto a : m) {
-            res.push_back(a.second);
-        }
-        return res;
+        return h;
     }
 };

@@ -1,26 +1,22 @@
+// Time O(l*n). The memo array of size l*n has been filled just once. Here, l refers to the range of sumsum and n refers to the size of nums array.
+// Space O(l*n). The depth of recursion tree can go upto n. The memo array contains l*n elements.
 class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int S) {
-        vector<vector<int>> memo(nums.size(), vector<int>(2001, INT_MIN));
-        return calculate(nums, 0, 0, S, memo);
+        unordered_map<int, unordered_map<int, int>> memo;
+        return helper(nums, S, 0, memo);
     }
-
 private:
-    int count = 0;
-    int calculate(vector<int>& nums, int i, int sum, int S, vector<vector<int>>& memo) {
-        if (i == nums.size()) {
-            if (sum == S)
-                return 1;
-            else
-                return 0;
-        } else {
-            if (memo[i][sum + 1000] != INT_MIN) {
-                return memo[i][sum + 1000];
-            }
-            int add = calculate(nums, i + 1, sum + nums[i], S, memo);
-            int subtract = calculate(nums, i + 1, sum - nums[i], S, memo);
-            memo[i][sum + 1000] = add + subtract;
-            return memo[i][sum + 1000];
-        }
+    int helper(const vector<int>& nums, long left, int idx,
+               unordered_map<int, unordered_map<int, int>> &memo) {
+        if(idx > nums.size())
+            return 0;
+        if(idx == nums.size())
+            return left == 0? 1 : 0;
+        if(memo.count(left) && memo[left].count(idx))
+            return memo[left][idx];
+        int ans = helper(nums, left+nums[idx], idx+1, memo);
+        ans += helper(nums, left-nums[idx], idx+1, memo);
+        return memo[left][idx] = ans;
     }
 };
