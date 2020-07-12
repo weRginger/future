@@ -1,5 +1,7 @@
+// source https://zxi.mytechroad.com/blog/tree/leetcode-437-path-sum-iii/
 // Time O(n)
 // Space O(H)
+// Same idea to LC 560. Subarray Sum Equals K
 class Solution {
 public:
   int pathSum(TreeNode* root, int sum) {
