@@ -1,29 +1,32 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-        int SIZE = nums.size();
-        int zero_index = 0;
-        int two_index = SIZE-1;
+  /*
+  Dutch National Flag problem solution.
+  */
+  void sortColors(vector<int>& nums) {
+    // for all idx < p0 : nums[idx < p0] = 0
+    // curr is an index of element under consideration
+    int p0 = 0, curr = 0;
+    // for all idx > p2 : nums[idx > p2] = 2
+    int p2 = nums.size() - 1;
 
-        for(int i=0; i < SIZE && two_index>=i ; i++)
-        {
-            if(nums[i]==0)
-            {
-                swap(nums[i],nums[zero_index]);
-                zero_index++;
-            }
-
-            if(nums[i]==2)
-            {
-                swap(nums[i],nums[two_index]);
-                two_index--;
-                i--; // this is the most important step for virtual single pass solution
-            }
-        }
+    while (curr <= p2) {
+      if (nums[curr] == 0) {
+        swap(nums[curr++], nums[p0++]);
+      }
+      else if (nums[curr] == 2) {
+        swap(nums[curr], nums[p2--]);
+      }
+      else curr++;
     }
+  }
 };
 
-// couting sort method: use a little bit more space
+// couting sort method: 2-pass
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
