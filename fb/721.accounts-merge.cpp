@@ -37,6 +37,7 @@ public:
         names[find(id)] = string_view(account[0]);
     }
  
+    // using set since the Q askes to output accounts in sorted order.
     unordered_map<int, set<string>> mergered;
     for (const auto& account : accounts)
         for (int i = 1; i < account.size(); ++i) {
