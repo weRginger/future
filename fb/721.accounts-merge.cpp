@@ -1,42 +1,58 @@
-const int N = 1000 + 5;
-int n, par[N];
-int find(int x) {
-    return par[x] == x ? x : (par[x] = find(par[x]));
-}
-void unit(int x, int y) {
-    x = find(x);
-    y = find(y);
-    if (x == y) return;
-    par[x] = y;
-}
-bool same(int x, int y) {
-    return find(x) == find(y);
-}
+// Time O(AlogA), where A is the sum of accounts in the "accounts" input
+// Space O(A) / 10000
 class Solution {
 public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-        n = accounts.size();
-        for (int i = 0; i < n; i++) par[i] = i;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < i; j++) if (!same(i, j)) {
-                    for (int k = 1; k < accounts[i].size(); k++) for (int t = 1; t < accounts[j].size(); t++) {
-                            if (accounts[i][k] == accounts[j][t]) unit(i, j);
-                        }
-                }
+  vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+    unordered_map<string_view, int> ids;   // email to id
+    unordered_map<int, string_view> names; // id to name
+    vector<int> p(10000);
+    iota(begin(p), end(p), 0); // initialize parent array
+    
+    function<int(int)> find = [&](int x) {
+        if (p[x] != x) 
+            p[x] = find(p[x]);
+        return p[x];
+    };
+    
+    auto getIdByEmail = [&](string_view email) {
+        auto it = ids.find(email);
+        if (it == ids.end()) {
+            int id = ids.size();
+            return ids[email] = id;
         }
-        vector<set<string> > res;
-        res.resize(n);
-        for (int i = 0; i < n; i++) {
-            par[i] = find(i);
-            for (int j = 1; j < accounts[i].size(); j++) res[par[i]].insert(accounts[i][j]);
-        }
-        vector<vector<string> > ret;
-        for (int i = 0; i < n; i++) if (par[i] == i) {
-                vector<string> cur;
-                cur.push_back(accounts[i][0]);
-                for (auto str : res[i]) cur.push_back(str);
-                ret.push_back(cur);
-            }
-        return ret;
+        return it->second;
+    };
+    
+    auto Union = [&](int id1, int id2) {
+        p[find(id1)] = find(id2);
+    };
+ 
+    for (const auto& account : accounts) {      
+        int id = getIdByEmail(account[1]);
+        for (int i = 2; i < account.size(); ++i)
+            Union(id, getIdByEmail(account[i]));
+      
+        // since all same accounts would have the same name,
+        // we only need to store parentId -> name to the map
+        names[find(id)] = string_view(account[0]);
     }
+ 
+    unordered_map<int, set<string>> mergered;
+    for (const auto& account : accounts)
+        for (int i = 1; i < account.size(); ++i) {
+        int parentId = find(getIdByEmail(account[i]));
+        mergered[parentId].insert(account[i]);
+      }    
+ 
+    vector<vector<string>> ans;
+    for (const auto& kv : mergered) {
+        vector<string> curr;
+        curr.push_back(string(names[kv.first]));
+        for(auto s : kv.second)
+            curr.push_back(s);
+        ans.push_back(curr);
+    }
+ 
+    return ans;
+  }
 };
