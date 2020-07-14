@@ -1,3 +1,5 @@
+// Time O((N−L)*L), where N is a length of haystack and L is a length of needle
+// Space O(1)
 class Solution {
 public:
     int strStr(string haystack, string needle) {
