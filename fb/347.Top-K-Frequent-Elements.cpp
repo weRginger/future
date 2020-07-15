@@ -1,3 +1,9 @@
+// quickselect
+// Time O(n) on average
+// Space O(n)
+// See LC for details
+
+// min-heap
 // Time O(n*logk)
 // Space O(n)
 class Solution {
