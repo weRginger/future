@@ -51,10 +51,63 @@ private:
     std::unique_ptr<TrieNode> root_;
 };
 
+struct TrieNode {
+    unordered_map<char, TrieNode*> children;
+    bool isWord = false;
+    
+    ~TrieNode() {
+        for(auto child : children) 
+            delete child.second;
+    }
+};
+
+// Author: Ziqi
+class Trie {
+private:
+    TrieNode* root_;
+    
+public:
+    /** Initialize your data structure here. */
+    Trie() : root_(new TrieNode()) {}
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        TrieNode* head = root_;
+        for(auto c : word) {
+            if(!head->children.count(c))
+                (head->children)[c] = new TrieNode();
+            head = (head->children)[c];
+        }
+        head->isWord = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        TrieNode* head = root_;
+        for(auto c : word) {
+            if(!head->children.count(c))
+                return false;
+            head = head->children[c];
+        }
+        return head->isWord;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        TrieNode* head = root_;
+        for(auto c : prefix) {
+            if(!head->children.count(c))
+                return false;
+            head = head->children[c];
+        }
+        return true;
+    }
+};
+
 /**
  * Your Trie object will be instantiated and called as such:
- * Trie obj = new Trie();
- * obj.insert(word);
- * bool param_2 = obj.search(word);
- * bool param_3 = obj.startsWith(prefix);
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
  */
