@@ -1,4 +1,4 @@
-// Topological sorting using BFS
+// Topological sorting using BFS, details see https://leetcode.com/problems/alien-dictionary/solution/
 // Time O(C), where C be the total length of all the words in the input list, added together.
 // Space O(1), since at most 26 letters
 class Solution {
