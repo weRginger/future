@@ -28,3 +28,21 @@ private:
         return m_[i][j] = 0;
     }
 };
+
+// greedy, too hard to come out on one's own
+// see https://leetcode.com/problems/valid-parenthesis-string/solution/
+// Time O(n)
+// Space O(1)
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int lo = 0, hi = 0;
+        for (auto c: s) {
+            lo += c == '(' ? 1 : -1;
+            hi += c != ')' ? 1 : -1;
+            if (hi < 0) return false;
+            lo = max(lo, 0);
+        }
+        return lo == 0;
+    }
+};
