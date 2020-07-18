@@ -1,32 +1,35 @@
+// Time O(V+E)
+// Space O(V+E)
 class Solution {
 public:
-    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
-        vector<vector<int>> graph(numCourses);
-        vector<int> indegree(numCourses, 0);
-        vector<int> ans;
-        for(auto edge : prerequisites)
-        {
-            graph[edge.second].push_back(edge.first);
-            ++indegree[edge.first];
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int, vector<int>> neighbor;
+        vector<int> degree(numCourses, 0);
+        for(const auto& v : prerequisites) {
+            degree[v[0]]++;
+            neighbor[v[1]].push_back(v[0]);
         }
-        queue<int> Q;
-        for(int i = 0; i < numCourses; i++)
-            if(indegree[i] == 0)
-                Q.push(i);
-        while(!Q.empty())
-        {
-            int u = Q.front();
-            Q.pop();
-            ans.push_back(u);
-            for(auto v : graph[u])
-            {
-                if(--indegree[v] == 0)
-                    Q.push(v);
+        
+        queue<int> q;
+        for(int i = 0; i < numCourses; i++) {
+            if(degree[i] == 0)
+                q.push(i);
+        }
+        
+        vector<int> ans;
+        while(!q.empty()) {
+            int out = q.front();
+            q.pop();
+            ans.push_back(out);
+            for(auto n : neighbor[out]) {
+                degree[n]--;
+                if(degree[n] == 0)
+                    q.push(n);
             }
         }
+        
         if(ans.size() == numCourses)
             return ans;
-        vector<int> empty;
-        return empty;
+        return {};
     }
 };
