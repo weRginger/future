@@ -19,9 +19,10 @@ public:
         }
 
         // Sort events
-        // NOTE: for entering points, if Li are equal, larger height goes first
-        //       for leaving points, if Ri are equal, smaller height goes first
-        // This is to cover corner cases.
+        // NOTE: for entering points, if Li are equal, larger height goes first.
+        //       for leaving points, if Ri are equal, smaller height goes first.
+        //       A single sort will achieve the above goals since we store Ri with negative nums.
+        // The purpose of the sorting is to avoid pushing wrong points to final answer when these corner cases happen.
         sort(es.begin(), es.end(), [](const Event& e1, const Event& e2) {
             if (e1.first == e2.first) return e1.second > e2.second;
             return e1.first < e2.first;
