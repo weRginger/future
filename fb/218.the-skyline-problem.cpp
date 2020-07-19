@@ -21,7 +21,7 @@ public:
         // Sort events
         // NOTE: for entering points, if Li are equal, larger height goes first
         //       for leaving points, if Ri are equal, smaller height goes first
-        // This is to cover for corner cases.
+        // This is to cover corner cases.
         sort(es.begin(), es.end(), [](const Event& e1, const Event& e2) {
             if (e1.first == e2.first) return e1.second > e2.second;
             return e1.first < e2.first;
