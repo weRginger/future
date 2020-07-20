@@ -1,3 +1,6 @@
+// Time O(n)
+// Space O(n)
+// Using prefix sum and DP
 class Solution {
 public:
     vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
@@ -10,11 +13,12 @@ public:
                 posLeft[i] = i+1-k;
                 tot = sum[i+1]-sum[i+1-k];
             }
-            else
+            else 
                 posLeft[i] = posLeft[i-1];
         }
         // DP for starting index of the right max sum interval
-        // caution: the condition is ">= tot" for right interval, and "> tot" for left interval
+        // caution: the condition is ">= tot" for right interval, 
+        // and "> tot" for left interval to achieve lexicographically smallest
         for (int i = n-k-1, tot = sum[n]-sum[n-k]; i >= 0; i--) {
             if (sum[i+k]-sum[i] >= tot) {
                 posRight[i] = i;
