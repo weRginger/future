@@ -1,5 +1,7 @@
 // Time O(E+log(E/V))
 // Space O(E+V)
+// ziqi: I think this is more like topological sorting that putting out degree equalling to 0 node to 
+//       the output array one by one and then reverse the output array after the traversal is done.
 class Solution {
 public:
     vector<string> findItinerary(vector<vector<string>>& tickets) {
