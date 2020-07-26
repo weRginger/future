@@ -1,3 +1,5 @@
+// Time O(log26(n))
+// Space O(1)
 class Solution {
 public:
     string convertToTitle(int n) {
