@@ -1,3 +1,5 @@
+// Time O(n)
+// Space O(n) - due to substr
 class Solution {
 public:
     bool isOneEditDistance(string s, string t) {
