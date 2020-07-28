@@ -36,7 +36,7 @@ public:
                 }
                     
                 rooms[row][col] = rooms[r][c] + 1;
-                q.push({new_r, col});
+                q.push({row, col});
             }
         }
     }
