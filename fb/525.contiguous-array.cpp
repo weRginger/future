@@ -1,4 +1,6 @@
 // Ziqi: this is a variation of cumulative sum problem
+// Time O(n)
+// Space O(n)
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
