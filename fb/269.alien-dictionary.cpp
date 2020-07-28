@@ -36,7 +36,8 @@ public:
 
         return ans;
     }
-
+    
+private:
     bool buildGraph(const vector<string>& words, 
                     unordered_map<char, vector<char>>& graph, 
                     unordered_map<char, int>& degree) {
