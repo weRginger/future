@@ -17,7 +17,6 @@ public:
             else 
                 right++;
         }
-        
-		return vector<int>(arr.begin()+left+1,arr.begin()+right);
+        return vector<int>(arr.begin()+left+1,arr.begin()+right);
     }
 };
