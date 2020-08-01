@@ -1,48 +1,36 @@
-// source: http://bangbingsyb.blogspot.com/2014/11/leetcode-reverse-nodes-in-k-group.html
+// Time O(n)
+// Space O(1)
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (!head || k == 1) return head;
+        ListNode dummy(0);
+        dummy.next = head;
+        int len = 1;
+        while (head = head->next) len++;
+        ListNode* pre = &dummy;    
+        for (int l = 0; l + k <= len; l += k) {
+            ListNode* cur = pre->next;
+            ListNode* nxt = cur->next;
+            for (int i = 1; i < k; ++i) {
+                cur->next = nxt->next;
+                nxt->next = pre->next;
+                pre->next = nxt;
+                nxt = cur->next;
+            }
+            pre = cur;
+        }
+        return dummy.next;
+    }
+};
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        if(k<2) return head;
-        ListNode *dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode *p = dummy;
-        while(p->next && p->next->next) {
-            ListNode *prev = p->next, *cur = prev->next;
-            int i=0;
-            while(cur && i<k-1) {
-                ListNode *temp = cur->next;
-                cur->next = prev;
-                prev = cur;
-                cur = temp;
-                i++;
-            }
-
-            if(i==k-1) {    // k nodes reversed
-                ListNode *temp = p->next;
-                p->next->next = cur;
-                p->next = prev;
-                p = temp;
-            }
-            else {  // less than k nodes reversed before reach end
-                cur = prev->next;
-                prev->next = NULL;
-                while(cur != p->next) {
-                    ListNode *temp = cur->next;
-                    cur->next = prev;
-                    prev = cur;
-                    cur = temp;
-                }
-                break;
-            }
-        }
-        return dummy->next;
-    }
-};
