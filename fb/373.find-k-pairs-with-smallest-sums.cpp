@@ -38,28 +38,27 @@ public:
 // space complexity: O(k)
 class Solution {
 public:
-    vector< pair<int, int> > kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
-    {
-        vector< pair<int, int>> result;
+    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        vector<vector<int>> result;
         int size1 = nums1.size();
         int size2 = nums2.size();
         if(size1 <= 0 || size2 <= 0 || k <= 0)
             return result;
 
-        auto comp = [](pair<int, int> a, pair<int, int> b) {
-            return a.first + a.second < b.first + b.second;
+        auto comp = [](vector<int> a, vector<int> b) {
+            return a[0] + a[1] < b[0] + b[1];
         };
-        priority_queue<pair<int, int>, vector< pair<int, int>>, decltype(comp)> que(comp);
+        priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> que(comp);
 
         for(int i = 0; i < min(size1, k); i++) {
             for(int j = 0; j < min(size2, k); j++) {
                 if(que.size() < k) {
-                    que.push(make_pair(nums1[i], nums2[j]));
+                    que.push({nums1[i], nums2[j]});
                 }
                 else {
-                    if (nums1[i] + nums2[j] < que.top().first + que.top().second) {
+                    if (nums1[i] + nums2[j] < que.top()[0] + que.top()[1]) {
                         que.pop();
-                        que.push(make_pair(nums1[i], nums2[j]));
+                        que.push({nums1[i], nums2[j]});
                     }
                 }
             }
