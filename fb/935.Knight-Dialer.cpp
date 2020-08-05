@@ -9,6 +9,8 @@ public:
     vector<vector<int>> dp(4, vector<int>(3, 1));
     dp[3][0] = dp[3][2] = 0;    
     for (int k = 1; k < N; ++k) {
+      // creating a tmp instead of modifying on dp,
+      // since each dp value needs to be used multiple times
       vector<vector<int>> tmp(4, vector<int>(3));
       for (int i = 0; i < 4; ++i)
         for (int j = 0; j < 3; ++j) {
