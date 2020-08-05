@@ -8,7 +8,7 @@ public:
     for (int i = 0; i < A.size() && !found; ++i)
       for (int j = 0; j < A[0].size() && !found; ++j)
         if (A[i][j]) {
-          dfs(A, j, i, q);
+          dfs(A, i, j, q);
           found = true;
         }
     
@@ -23,9 +23,9 @@ public:
         for (int i = 0; i < 4; ++i) {
           int tx = x + dirs[i];
           int ty = y + dirs[i + 1];
-          if (tx < 0 || ty < 0 || tx >= A[0].size() || ty >= A.size() || A[ty][tx] == 2) continue;          
-          if (A[ty][tx] == 1) return steps;
-          A[ty][tx] = 2;
+          if (tx < 0 || ty < 0 || tx >= A.size() || ty >= A[0].size() || A[tx][ty] == 2) continue;          
+          if (A[tx][ty] == 1) return steps;
+          A[tx][ty] = 2;
           q.emplace(tx, ty);
         }
       }
@@ -35,8 +35,8 @@ public:
   }
 private:  
   void dfs(vector<vector<int>>& A, int x, int y, queue<pair<int, int>>& q) {
-    if (x < 0 || y < 0 || x >= A[0].size() || y >= A.size() || A[y][x] != 1) return;
-    A[y][x] = 2;
+    if (x < 0 || y < 0 || x >= A.size() || y >= A[0].size() || A[x][y] != 1) return;
+    A[x][y] = 2;
     q.emplace(x, y);
     dfs(A, x - 1, y, q);
     dfs(A, x, y - 1, q);
