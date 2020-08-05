@@ -14,9 +14,9 @@ private:
         } else {
             for (int k = 1; k < 4; ++k) {
                 if (s.size() < k) break;
-                int val = atoi(s.substr(0, k).c_str());
+                int val = stoi(s.substr(0, k));
                 // k != std::to_string(val).size() to filter out 010, 00 etc cases
-                if (val > 255 || k != std::to_string(val).size()) continue;
+                if (val > 255 || k != to_string(val).size()) continue;
                 dfs(s.substr(k), n + 1, out + s.substr(0, k) + (n == 3 ? "" : "."), res);
             }
         }
