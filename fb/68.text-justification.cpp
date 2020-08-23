@@ -1,3 +1,5 @@
+// Time O(n)
+// Space O(1)
 class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
