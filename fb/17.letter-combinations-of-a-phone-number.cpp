@@ -10,7 +10,7 @@ public:
         if (digits.empty()) return {};
         
         vector<vector<char>> d(10);
-        d[0] = {' '};
+        d[0] = {};
         d[1] = {};
         d[2] = {'a','b','c'};
         d[3] = {'d','e','f'};
@@ -50,7 +50,7 @@ public:
         if (digits.empty()) return {};
         
         vector<vector<char>> d(10);
-        d[0] = {' '};
+        d[0] = {};
         d[1] = {};
         d[2] = {'a','b','c'};
         d[3] = {'d','e','f'};
