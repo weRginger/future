@@ -10,7 +10,7 @@ public:
         return word_Break(s, wordSet, 0, memo);
     }
 private:
-    bool word_Break(string& s, unordered_set<string>& wordSet, int start, unordered_map<int, bool>& memo) {
+    bool word_Break(const string& s, const unordered_set<string>& wordSet, int start, unordered_map<int, bool>& memo) {
         if (start == s.size()) {
             return true;
         }
