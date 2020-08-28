@@ -29,7 +29,7 @@ private:
         stk.push(-1);
         int maxarea = 0;
         for(int i = 0; i < heights.size(); ++i) {
-            while(stk.top() != -1 && heights[stk.top()] >= heights[i]) {
+            while(stk.top() != -1 && heights[stk.top()] > heights[i]) {
                 int topIdx = stk.top();
                 stk.pop();
                 maxarea = max(maxarea, heights[topIdx] * (i - stk.top() - 1));
