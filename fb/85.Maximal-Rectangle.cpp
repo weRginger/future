@@ -25,6 +25,8 @@ public:
 private:
     // Get the maximum area in a histogram given its heights
     int leetcode84(const vector<int>& heights) {
+        // Ziqi: seems like we are maintaining a monotonic stack, 
+        // i.e. smallest at the bottom and largest at the top
         stack<int> stk;
         stk.push(-1);
         int maxarea = 0;
