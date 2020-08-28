@@ -14,7 +14,7 @@ public:
         int ans = INT_MAX;
         for (int i = 0; i < points.size(); ++i)
             for (int j = i+1; j < points.size(); ++j) {
-                // cannot be in the same line parallel to the x and y axes
+                // cannot be in the same line parallel to the x or y axes
                 if (points[i][0] != points[j][0] && points[i][1] != points[j][1]) {
                     if (pointSet.count(40001 * points[i][0] + points[j][1]) &&
                             pointSet.count(40001 * points[j][0] + points[i][1])) {
