@@ -20,8 +20,11 @@ public:
                 }
                 j++;
             }
+            
+            // for case "abc" before "ab" is always wrong,
+            // regardless of dict order
             if(j < s0 && j == s1)
-                return false;
+                return false; 
         }
         return true;
     }
