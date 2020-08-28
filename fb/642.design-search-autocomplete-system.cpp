@@ -1,69 +1,72 @@
 class AutocompleteSystem {
-private:
-    struct StringCount {
-        string m_str;
-        int m_count{0};
-    };
-    struct Node {
-        unordered_map<char, Node*> m_next;
-        vector<int> m_words;
-    };
-    vector<StringCount> m_storage;
-    unordered_map<string, int> m_map;
-    Node* m_root, *m_cur;
-    string m_input;
-    void insert(const string& str, int times)
-    {
-        auto it = m_map.find(str);
-        if (it != m_map.end())
-        {
-            m_storage[m_map[str]].m_count += times;
-            return ;
-        }
-        int idx = m_storage.size();
-        m_map[str] = idx;
-        m_storage.push_back({str, times});
-        auto* cur = m_root;
-        for (auto ch:str)
-        {
-            auto& nx = cur->m_next[ch];
-            if (nx == nullptr) nx = new Node();
-            nx->m_words.push_back(idx);
-            cur = nx;
-        }
-    }
 public:
-    AutocompleteSystem(vector<string> sentences, vector<int> times) {
-        m_root = new Node();
-        m_cur = m_root;
-        const int size = sentences.size();
-        for (int i=0; i<size; ++i)  insert(sentences[i], times[i]);
+    class Word {
+    public:
+        int freq;
+        string w;
+        Word(string w_, int freq_): w(w_), freq(freq_) {}
+    };
+    class TrieNode {
+    public:
+        vector<Word*> s;
+        unordered_map<char, TrieNode*> children;
+        TrieNode() {}
+    };
+    unordered_map<string, Word*> words;
+    
+    void add(string sentence, int times) {
+        if (!words.count(sentence)) {
+            words[sentence] = new Word(sentence, times);
+            auto w = words[sentence];
+            auto cur = root;
+            for (const auto c : sentence) {
+                if (cur->children[c] == nullptr) cur->children[c] = new TrieNode();
+                cur = cur->children[c];
+                cur->s.push_back(w);
+            }
+        } else ++words[sentence]->freq;
     }
-
+    
+    TrieNode *root, *cur;
+    AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
+        root = new TrieNode();
+        for (int i = 0; i < sentences.size(); ++i) add(sentences[i], times[i]);
+        cur = root;
+    }
+    
+    string ss;
     vector<string> input(char c) {
         vector<string> res;
-        if (c == '#')
-        {
-            insert(m_input, 1);
-            m_input = "";
-            m_cur = m_root;
+        if (c == '#') {
+            add(ss, 1);
+            ss.clear();
+            cur = root;
             return res;
         }
-        m_input += c;
-        if (m_cur == nullptr)   return res;
-        m_cur = m_cur->m_next[c];
-        if (m_cur == nullptr)   return res;
-        auto ids = m_cur->m_words;
-        sort(ids.begin(), ids.end(), [&](int l, int r) {
-            return m_storage[l].m_count>m_storage[r].m_count || (m_storage[l].m_count == m_storage[r].m_count and m_storage[l].m_str<m_storage[r].m_str);
-        });
-        for (int i=0; i<min(3, static_cast<int>(ids.size())); ++i) res.push_back(m_storage[ids[i]].m_str);
+        ss += c;
+        if (cur == nullptr) return res;
+        cur = cur->children[c];
+        if (cur == nullptr) return res;
+        const auto cmp = [](const Word *a, const Word *b) {
+            if (a->freq != b->freq) return a->freq > b->freq;
+            return a->w < b->w;
+        };
+        priority_queue<Word*, vector<Word*>, decltype(cmp)> pq(cmp);
+        for (auto t : cur->s) {
+            pq.push(t);
+            if (pq.size() > 3) pq.pop();
+        }
+        while (!pq.empty()) {
+            res.push_back(pq.top()->w);
+            pq.pop();
+        }
+        reverse(res.begin(), res.end());
         return res;
     }
 };
 
 /**
  * Your AutocompleteSystem object will be instantiated and called as such:
- * AutocompleteSystem obj = new AutocompleteSystem(sentences, times);
- * vector<string> param_1 = obj.input(c);
+ * AutocompleteSystem* obj = new AutocompleteSystem(sentences, times);
+ * vector<string> param_1 = obj->input(c);
  */
