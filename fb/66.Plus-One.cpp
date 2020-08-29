@@ -1,5 +1,5 @@
 // Time O(n)
-// Space O(1) or O(n) if all 9s
+// Space O(1)
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
