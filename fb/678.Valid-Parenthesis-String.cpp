@@ -16,11 +16,13 @@ private:
         
         if (i == j) return m_[i][j] = (s[i] == '*');
         
+        // case 1: (xxxyyy) or (xxxyyy* or *xxxyyy) or *xxxyyy*
         if ((s[i] == '(' || s[i] == '*')
           &&(s[j] == ')' || s[j] == '*')
           && isValid(s, i + 1, j - 1))
                 return m_[i][j] = 1;        
         
+        // case 2: (xxx)(yyy)
         for (int p = i; p < j; ++p)
             if (isValid(s, i, p) && isValid(s, p + 1, j))
                 return m_[i][j] = 1;                        
