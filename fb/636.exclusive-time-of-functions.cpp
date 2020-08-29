@@ -4,9 +4,6 @@
 class Solution {
 public:
     vector<int> exclusiveTime(int n, vector<string>& logs) {
-        class Solution {
-public:
-    vector<int> exclusiveTime(int n, vector<string>& logs) {
         if(logs.empty() || n <= 0) return vector<int> {};
         vector<int> ans(n, 0);
         stack<int> st;
@@ -33,8 +30,6 @@ public:
             }
         }
         return ans;
-    }
-};
     }
 };
 
