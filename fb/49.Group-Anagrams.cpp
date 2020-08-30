@@ -15,10 +15,14 @@ public:
     }
 private:
     string hash(const string& s) {
-        string h(26,0);
+        vector<int> h(26,0);
         for(int i = 0; i < s.size(); i++) {
             h[s[i] - 'a']++;
         }
-        return h;
+        string ans = "";
+        for(int i = 0; i < 26; i++) {
+            ans += to_string(h[i]) + ",";
+        }
+        return ans;
     }
 };
