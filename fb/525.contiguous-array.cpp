@@ -12,6 +12,8 @@ public:
             if (diff == 0) {
                 max_length = i + 1;
             } else if (diff_index.find(diff) != diff_index.end()) {
+                // if found, it means there is alerady some other subarray having the same diff that
+                // further means the subarray from (diff_index[diff] + 1) to i inclusive have equal num of 0s and 1s.
                 max_length = max(max_length, i - diff_index[diff]);
             } else {
                 diff_index[diff] = i;
