@@ -1,7 +1,6 @@
 // reservoir sampling - https://www.geeksforgeeks.org/reservoir-sampling/
 // Time O(n) per pick()
 // Space O(1)
-Space complexity: O(1)
 class Solution {
 public:
     Solution(vector<int> nums) {
