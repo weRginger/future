@@ -6,14 +6,13 @@ public:
         if (!head) return head;
 
         Node dummy(0, nullptr, head, nullptr);
-        Node* curr = &dummy;
         Node* prev = &dummy;
 
         stack<Node*> stk;
         stk.push(head);
 
         while (!stk.empty()) {
-            curr = stk.top(); 
+            Node* curr = stk.top(); 
             stk.pop();
             prev->next = curr;
             curr->prev = prev;
