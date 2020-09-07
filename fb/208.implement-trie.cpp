@@ -51,6 +51,7 @@ private:
     std::unique_ptr<TrieNode> root_;
 };
 
+// Author: Ziqi
 struct TrieNode {
     unordered_map<char, TrieNode*> children;
     bool isWord = false;
@@ -61,7 +62,6 @@ struct TrieNode {
     }
 };
 
-// Author: Ziqi
 class Trie {
 private:
     TrieNode* root_;
