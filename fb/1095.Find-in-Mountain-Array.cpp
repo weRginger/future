@@ -12,7 +12,7 @@
 // Time O(logN)
 // Space O(1)
 class Solution {
-public:
+private:
     int getHighest(int n, MountainArray &mountainArr) {
         int l = 0, r = n - 1;
         while (l + 2 < r) {
@@ -44,7 +44,7 @@ public:
                 return l + 2;
         }
     }
-
+public:
     int findInMountainArray(int target, MountainArray &mountainArr) {
         int n = mountainArr.length();
 
