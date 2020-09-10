@@ -9,7 +9,7 @@ public:
     }
 private:
     int preInd;
-    unordered_map<int,int>mp;
+    unordered_map<int,int> mp;
     TreeNode * rec(vector<int>& pre, vector<int>& post,int l, int r){
         if(l == r)return new TreeNode(pre[preInd++]);
         if(l > r)return NULL;
