@@ -2,6 +2,12 @@
 // Space O(n)
 class Solution {
 public:
+    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
+        preInd = 0;
+        for(int i = 0; i < post.size(); i++)mp[post[i]] = i;
+        return rec(pre,post,0,post.size()-1);
+    }
+private:
     int preInd;
     unordered_map<int,int>mp;
     TreeNode * rec(vector<int>& pre, vector<int>& post,int l, int r){
@@ -12,11 +18,6 @@ public:
         curr->left = rec(pre,post,l,t);
         curr->right = rec(pre,post,t + 1,r-1);
         return curr;
-    }
-    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
-        preInd = 0;
-        for(int i = 0; i < post.size(); i++)mp[post[i]] = i;
-        return rec(pre,post,0,post.size()-1);
     }
 };
 
