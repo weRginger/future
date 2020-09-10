@@ -4,7 +4,8 @@ class Solution {
 public:
     TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
         preInd = 0;
-        for(int i = 0; i < post.size(); i++)mp[post[i]] = i;
+        for(int i = 0; i < post.size(); i++)
+            mp[post[i]] = i;
         return rec(pre,post,0,post.size()-1);
     }
 private:
