@@ -1,6 +1,7 @@
 // Backtracking hard to estimate complexity. Details see leetcode solution page
 class Solution {
 private:
+    // use "string& cur" for space efficiency, but have to backtrack
     void helper(int l, int r, string& cur, vector<string>& ans) {
         if(l == 0 && r == 0) {
             ans.push_back(cur);
@@ -10,12 +11,12 @@ private:
         if(l > 0) {
             cur += '(';
             helper(l - 1, r, cur, ans);
-            cur.resize(len);
+            cur.resize(len); // backtrack
         }
         if(l < r) {
             cur += ')';
             helper(l, r - 1, cur, ans);
-            cur.resize(len);
+            cur.resize(len); // backtrack
         }
     }
 public:
