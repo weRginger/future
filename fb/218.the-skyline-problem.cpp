@@ -4,9 +4,10 @@
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
-        // abs(Event.second) stores height, and + num denotes an entering point
-        // and - num denotes a leaving point
-        // Event.first stores either Li or Ri based on entering or leaving point
+        // abs(Event.second) stores height.
+        // "+" sign denotes an entering point.
+        // "-" sign denotes a leaving point.
+        // Event.first stores either Li or Ri based on entering or leaving point.
         typedef pair<int, int> Event;
 
         vector<Event> es;
