@@ -1,5 +1,6 @@
 // Time O(n)
 // Space O(1)
+// very similar to LC 53. Maximum Subarray - need to convert into DP first
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
