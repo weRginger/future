@@ -10,10 +10,10 @@ public:
         int r = S - 1;
         for(int i = S - 1; i >=0; i--) {
             if(abs(A[r]) < abs(A[l])) {
-                ans[i] = abs(A[l]) * abs(A[l]);
+                ans[i] = A[l] * A[l];
                 l++;
             } else {
-                ans[i] = abs(A[r]) * abs(A[r]);
+                ans[i] = A[r] * A[r];
                 r--;
             }
         }
