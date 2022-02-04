@@ -22,17 +22,16 @@ public:
             return a.from < b.from;
         });
         int ans = 0;
-        Interval last(0, 0);
-        for(auto i : v) {
-            if(i.from > last.to) {
-                ans += i.to - i.from;
-                last = i;
-            }
-            else if(i.to > last.to) {
-                ans += i.to - last.to;
-                last = i;
+        Interval last = v[0];
+        for(int i = 1; i < v.size(); i++) {
+            if(v[i].from >= last.to) {
+                ans += last.to - last.from;
+                last = v[i];
+            } else {
+                last.to = max(last.to, v[i].to);
             }
         }
+        ans += last.to - last.from;
         return ans;
     }
 
