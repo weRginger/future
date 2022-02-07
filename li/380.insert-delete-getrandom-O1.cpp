@@ -30,6 +30,7 @@ public:
     }
 private:
     vector<int> nums;
+    // stores val to position in nums map
     unordered_map<int, int> m;
 };
 
