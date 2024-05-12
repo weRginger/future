@@ -6,17 +6,18 @@ public:
         vector<int> count(121, 0);
         for (auto age: ages)
             count[age]++;
-
+        
         int ans = 0;
-        for (int ageA = 1; ageA <= 120; ageA++) {
-            int countA = count[ageA];
-            for (int ageB = 1; ageB <= 120; ageB++) {
-                int countB = count[ageB];
-                if (ageA * 0.5 + 7 >= ageB) continue;
-                if (ageA < ageB) continue;
-                if (ageA < 100 && 100 < ageB) continue;
-                ans += countA * countB;
-                if (ageA == ageB) ans -= countA;
+        for(int x = 1; x <= 120; x++){
+            int n1 = count[x];
+            for(int y = 1; y <= 120; y++){
+                int n2 = count[y];
+                if(!(y <= (0.5 * x + 7) || y > x || ( y > 100 && x < 100))){
+                    ans += n1*n2;
+                    if(x==y){
+                        ans -= n1;
+                    }
+                }
             }
         }
 
