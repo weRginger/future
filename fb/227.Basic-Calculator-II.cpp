@@ -8,7 +8,7 @@ public:
         int pre = 0;
         char lastOP = '+';
         for(int i = 0; i < s.size();) {
-            if(s[i] == ' ') {
+            if(s[i] == ' ') { // or use if(iswspace(s[i])
                 i++;
             }
             else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/') {
