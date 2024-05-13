@@ -11,7 +11,7 @@ public:
     }
     
 private:
-    int helper(const NestedInteger& ni, int d, int& ans) {
+    void helper(const NestedInteger& ni, int d, int& ans) {
         if(ni.isInteger()) {
             ans += ni.getInteger() * d;
         } else {
@@ -19,7 +19,6 @@ private:
                 helper(i, d + 1, ans);
             }
         }
-        return ans;
     }
 };
 
