@@ -1,5 +1,37 @@
 // Time O(N) for c-tor and O(logN) for pickIndex
 // Space O(N)
+
+class Solution {
+private:
+    vector<int> prefixSums;
+    int totalSum;
+public:
+    Solution(vector<int>& w) {
+        int prefixSum = 0;
+        for(auto num : w) {
+            prefixSum += num;
+            prefixSums.push_back(prefixSum);
+        }
+        totalSum = prefixSum;
+    }
+    
+    int pickIndex() {
+        float randNum = (float) rand() / RAND_MAX;
+        float target =  randNum * prefixSums.back();
+        int l = 0;
+        int r = prefixSums.size();
+        while(l < r) {
+            int mid = l + (r - l) / 2;
+            if(prefixSums[mid] < target) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return l;
+    }
+};
+
 class Solution {
     vector<int> prefixSums;
 
