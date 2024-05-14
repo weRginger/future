@@ -4,15 +4,16 @@ class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
         int l = 0, r = nums.size() - 1;
-        // Note while condition is l "<" r to make sure nums[mid + 1] within bound.
-        // If using l "<=" r, then nums[mid + 1] could be out of bound.
-        while (l < r) {
+        while (l + 1 < r) {
             int mid = l + (r - l) / 2;
             if (nums[mid] > nums[mid + 1])
                 r = mid;
             else
-                l = mid + 1;
+                l = mid;
         }
-        return l;
+        if(nums[l] > nums[r]) {
+            return l;
+        };
+        return r;
     }
 };
