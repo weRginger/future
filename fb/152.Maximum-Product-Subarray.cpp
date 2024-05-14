@@ -11,6 +11,7 @@ public:
         int result = max_so_far;
 
         for (int i = 1; i < nums.size(); i++) {
+            // DP is the max and min prod seen so far that must includes nums[i]
             int curr = nums[i];
             int temp_max = max(curr, max(max_so_far * curr, min_so_far * curr));
             min_so_far = min(curr, min(max_so_far * curr, min_so_far * curr));
