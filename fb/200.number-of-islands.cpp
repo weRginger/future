@@ -3,37 +3,32 @@
 // Space O(m*n)
 class Solution {
 private:
-    void dfs(vector<vector<char>>& grid, int r, int c) {
-        int nr = grid.size();
-        int nc = grid[0].size();
-
-        if (r < 0 || r >= nr || c < 0 || c >= nc || grid[r][c] == '0')
-            return;
-
+    vector<int> rd = {-1, 0, 1, 0};
+    vector<int> cd = {0, 1, 0, -1};
+     void dfs(vector<vector<char>>& grid, const int& m, const int& n, const int& r, const int& c) {
         grid[r][c] = '0';
-        dfs(grid, r - 1, c);
-        dfs(grid, r + 1, c);
-        dfs(grid, r, c - 1);
-        dfs(grid, r, c + 1);
+        for(int i = 0; i < 4; i++) {
+            int nr = r + rd[i];
+            int nc = c + cd[i];
+            if(nr >= 0 && nr < m && nc >=0 && nc < n && grid[nr][nc] == '1') {
+                dfs(grid, m, n, nr, nc);
+            }
+        }
     }
-
 public:
     int numIslands(vector<vector<char>>& grid) {
-        int nr = grid.size();
-        if (!nr) return 0;
-        int nc = grid[0].size();
-
-        int num_islands = 0;
-        for (int r = 0; r < nr; ++r) {
-            for (int c = 0; c < nc; ++c) {
-                if (grid[r][c] == '1') {
-                    ++num_islands;
-                    dfs(grid, r, c);
+        int m = grid.size();
+        int n = grid[0].size();
+        int count = 0;
+        for(int i = 0; i < m; i++) {
+            for(int j =0; j < n; j++) {
+                if(grid[i][j] == '1') {
+                    count++;
+                    dfs(grid, m, n, i, j);
                 }
             }
         }
-
-        return num_islands;
+        return count;
     }
 };
 
