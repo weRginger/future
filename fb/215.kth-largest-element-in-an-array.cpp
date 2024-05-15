@@ -1,5 +1,6 @@
 // Time O(n) on average, O(n^2) on worst
 // Space O(1)
+// quick select
 class Solution {
 private:
     int partition(vector<int>& nums, int left, int right) {
