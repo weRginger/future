@@ -24,21 +24,24 @@ public:
 class Solution {
 private:
     bool isPalindrome(const string& s, int i, int j) {
-        for (int k = i; k <= i + (j - i) / 2; k++) {
-            if (s[k] != s[j - k + i]) 
+        while(i < j) {
+            if (s[i] != s[j]) 
                 return false;
+            i++;
+            j--;
         }
         return true;
     }
 public:
     bool validPalindrome(string s) {
-        int ssize = s.size();
-        for (int i = 0; i < ssize / 2; i++) {
-            if (s[i] != s[ssize - 1 - i]) {
-                int j = ssize - 1 - i;
-                return (isPalindrome(s, i+1, j) ||
-                        isPalindrome(s, i, j-1));
+        int i = 0;
+        int j = s.size() - 1;
+        while(i < j) {
+            if (s[i] != s[j]) {
+                return (isPalindrome(s, i+1, j) || isPalindrome(s, i, j-1));
             }
+            i++;
+            j--;
         }
         return true;
     }
