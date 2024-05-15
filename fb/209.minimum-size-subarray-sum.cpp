@@ -1,5 +1,6 @@
 // Time O(n)
 // Space O(1)
+// two pointers
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
