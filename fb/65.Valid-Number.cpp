@@ -1,28 +1,35 @@
 // Time O(n)
 // Space O(1)
+// check LC answer
 class Solution {
 public:
     bool isNumber(string s) {
-        bool num = false, numAfterE = true, dot = false, exp = false, sign = false;
-        int n = s.size();
-        for (int i = 0; i < n; ++i) {
-            if (s[i] == ' ') {
-                if (i < n - 1 && s[i + 1] != ' ' && (num || dot || exp || sign)) return false;
-            } else if (s[i] == '+' || s[i] == '-') {
-                if (i > 0 && s[i - 1] != 'e' && s[i - 1] != ' ') return false;
-                sign = true;
-            } else if (s[i] >= '0' && s[i] <= '9') {
-                num = true;
-                numAfterE = true;
-            } else if (s[i] == '.') {
-                if (dot || exp) return false;
-                dot = true;
-            } else if (s[i] == 'e') {
-                if (exp || !num) return false;
-                exp = true;
-                numAfterE = false;
-            } else return false;
+        bool seenDigit = false;
+        bool seenExponent = false;
+        bool seenDot = false;
+        for (int i = 0; i < s.length(); i++) {
+            char curr = s[i];
+            if (curr >= '0' && curr <= '9') {
+                seenDigit = true;
+            } else if (curr == '+' || curr == '-') {
+                if (i > 0 && s[i - 1] != 'e' && s[i - 1] != 'E') {
+                    return false;
+                }
+            } else if (curr == 'e' || curr == 'E') {
+                if (seenExponent || !seenDigit) {
+                    return false;
+                }
+                seenExponent = true;
+                seenDigit = false;
+            } else if (curr == '.') {
+                if (seenDot || seenExponent) {
+                    return false;
+                }
+                seenDot = true;
+            } else {
+                return false;
+            }
         }
-        return num && numAfterE;
+        return seenDigit;
     }
 };
