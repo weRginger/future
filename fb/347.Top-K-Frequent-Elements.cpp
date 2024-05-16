@@ -39,7 +39,7 @@ public:
     }
 };
 
-// Butcket sort
+// Bucket sort
 // Time O(n)
 // Space O(n)
 class Solution {
