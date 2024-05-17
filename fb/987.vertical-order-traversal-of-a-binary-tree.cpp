@@ -7,7 +7,7 @@ public:
     if (!root) return {};
     int min_x = INT_MAX;
     int max_x = INT_MIN;
-    map<pair<int, int>, multiset<int>> h; // {y, x} -> {vals}
+    map<pair<int, int>, multiset<int>> h; // {y, x} -> {vals}. NOTE: use map since it allows pair as key
     traverse(root, 0, 0, h, min_x, max_x);
     vector<vector<int>> ans(max_x - min_x + 1);
     for (const auto& m : h) {      
