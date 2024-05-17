@@ -7,8 +7,12 @@ public:
     
     int min_x = INT_MAX;
     int max_x = INT_MIN;
+<<<<<<< HEAD
     
     map<pair<int, int>, set<int>, decltype(comp)> h(comp); // {x, y} -> {vals}
+=======
+    map<pair<int, int>, multiset<int>> h; // {y, x} -> {vals}. NOTE: use map since it allows pair as key
+>>>>>>> da86ef2 (Update 987.vertical-order-traversal-of-a-binary-tree.cpp)
     traverse(root, 0, 0, h, min_x, max_x);
     
     vector<vector<int>> ans(max_x - min_x + 1);
