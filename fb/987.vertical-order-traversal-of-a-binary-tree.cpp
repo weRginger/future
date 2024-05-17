@@ -45,7 +45,11 @@ private:
     if (!root) return;
     min_x = min(min_x, x);
     max_x = max(max_x, x);    
+<<<<<<< HEAD
     h[{x, y}].insert(root->val);
+=======
+    h[{y, x}].insert(root->val); // {y, x} or {x, y} do not matter
+>>>>>>> db85a34 (Update 987.vertical-order-traversal-of-a-binary-tree.cpp)
     traverse(root->left, x - 1, y + 1, h, min_x, max_x);
     traverse(root->right, x + 1, y + 1, h, min_x, max_x);
   }
