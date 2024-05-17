@@ -1,5 +1,44 @@
 // Time O(n)
 // Space O(n)
+// ziqi new
+class Solution {
+public:
+    vector<vector<int>> verticalOrder(TreeNode* root) {
+        unordered_map<int, vector<int>> mp; // k is the col and v is the values
+        int min_col = INT_MAX;
+        if(!root) {
+            return {};
+        }
+        queue<pair<TreeNode*, int>> q;
+        q.push({root, 0});
+        while(!q.empty()) {
+            int q_size = q.size();
+            for(int i = 0; i < q_size; i++) {
+                auto p = q.front();
+                mp[p.second].push_back(p.first->val);
+                min_col = min(min_col, p.second);
+                if(p.first->left) {
+                    q.push({p.first->left, p.second-1});
+                }
+                if(p.first->right) {
+                    q.push({p.first->right, p.second+1});
+                }
+                q.pop();
+            }
+        }
+
+        vector<vector<int>> ans;
+        while(mp.count(min_col)) {
+            ans.push_back(mp[min_col]);
+            min_col++;
+        }
+
+        return ans;
+    }
+};
+
+// Time O(n)
+// Space O(n)
 class Solution {
 public:
     vector<vector<int>> verticalOrder(TreeNode* root) {
