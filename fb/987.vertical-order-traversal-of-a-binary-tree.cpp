@@ -17,8 +17,13 @@ public:
     
     vector<vector<int>> ans(max_x - min_x + 1);
     for (const auto& m : h) {      
+<<<<<<< HEAD
       int x = m.first.first - min_x;
       ans[x].insert(end(ans[x]), begin(m.second), end(m.second));
+=======
+      int x = m.first.second - min_x;
+      for(auto n :m.second) ans[x].push_back(n);
+>>>>>>> f375abb (Update 987.vertical-order-traversal-of-a-binary-tree.cpp)
     }
     
     return ans;
