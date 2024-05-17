@@ -22,8 +22,12 @@ public:
       ans[x].insert(end(ans[x]), begin(m.second), end(m.second));
 =======
       int x = m.first.second - min_x;
+<<<<<<< HEAD
       for(auto n :m.second) ans[x].push_back(n);
 >>>>>>> f375abb (Update 987.vertical-order-traversal-of-a-binary-tree.cpp)
+=======
+      for(auto val : m.second) ans[x].push_back(val);
+>>>>>>> 87c8cd5 (Update 987.vertical-order-traversal-of-a-binary-tree.cpp)
     }
     
     return ans;
