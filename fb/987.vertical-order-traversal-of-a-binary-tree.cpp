@@ -12,7 +12,7 @@ public:
     vector<vector<int>> ans(max_x - min_x + 1);
     for (const auto& m : h) {      
       int x = m.first.second - min_x;
-      for(auto n :m.second) ans[x].push_back(n);
+      for(auto val : m.second) ans[x].push_back(val);
     }
     return ans;
   }
