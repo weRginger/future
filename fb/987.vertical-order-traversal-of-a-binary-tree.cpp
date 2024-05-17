@@ -24,7 +24,7 @@ private:
     if (!root) return;
     min_x = min(min_x, x);
     max_x = max(max_x, x);    
-    h[{y, x}].insert(root->val);
+    h[{y, x}].insert(root->val); // {y, x} or {x, y} do not matter
     traverse(root->left, x - 1, y + 1, h, min_x, max_x);
     traverse(root->right, x + 1, y + 1, h, min_x, max_x);
   }
