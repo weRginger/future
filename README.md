@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-:grin:
-=======
 # future
 
 A mutex is NOT a binary semaphore. Semaphores can be signaled and waited on by any thread, 
@@ -25,4 +22,3 @@ https://www.youtube.com/watch?v=AXjmTQ8LEoI
 Merge Sort: https://www.geeksforgeeks.org/merge-sort/
 
 Quick Sort: https://www.geeksforgeeks.org/quick-sort/
->>>>>>> 493faaa (Update README.md)
