@@ -1,5 +1,6 @@
 // Time O(n)
 // Space O(1)
+// see LC for easier understanding, esp. see the figure
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
