@@ -3,24 +3,25 @@
 class Solution {
 public:
     bool validWordAbbreviation(string word, string abbr) {
-        int num = 0;
-        int i = 0, j = 0;
-        while(i < word.size() && j < abbr.size()){
-            if(abbr[j] >= '0' && abbr[j] <= '9') {
-                if(num == 0 && abbr[j] == '0') return false; // leading zeros
-                num = num * 10 + abbr[j] - '0';
+        if (word.empty() || abbr.empty()) return false;
+
+        int i = 0; int j = 0, number = 0;
+        while (i < word.size() && j < abbr.size()) {
+            if (abbr[j] >= '0' && abbr[j] <= '9') {
+                number = number * 10 + abbr[j] - '0';
+                if(number == 0) 
+                    return false;
                 j++;
-            } else { // abbr j is letter
-                if(num > 0) {
-                    i += num;
-                    num = 0;
-                }
-                if(word[i] != abbr[j]) return false;
+            } else {
+                i += number;
+                number = 0;
+                if(i >= word.size() || word[i] != abbr[j]) 
+                    return false;
                 i++;
                 j++;
             }
         }
-        if(num > 0) i += num; // abbr ends in num
+        i += number;
         return i == word.size() && j == abbr.size();
     }
 };
