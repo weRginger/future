@@ -1,0 +1,13 @@
+如下，排序终止条件为l+1<r
+好处：最终的l或者r不会错过答案
+坏处：需要检查nums[l]和nums[r]判断哪个值符合题目要求
+
+l = 0;
+r = nums.size() - 1;
+while (l + 1 < r) {
+  ...
+}
+// check BOTH nums[l] and nums[r] meet the requirement
+
+代表题型： 34. Find First and Last Position of Element in Sorted Array
+lc34中如果不用l+1<r来判断，而是普通的l<r，那就需要额外判断接下来的值是不是已经小于或者大于了target，不然贸然继续查找，可能会错过答案
