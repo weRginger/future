@@ -2,13 +2,13 @@
 // Space O(1)
 class Solution {
 public:
-    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        long area1 = (C - A) * (D - B);
-        long area2 = (G - E) * (H - F);
-        int x1 = max(A, E);
-        int x2 = max(x1, min(C, G));
-        int y1 = max(B, F);
-        int y2 = max(y1, min(D, H));
+    int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+        long area1 = (ax2 - ax1) * (ay2 - ay1);
+        long area2 = (bx2 - bx1) * (by2 - by1);
+        int x1 = max(ax1, bx1);
+        int x2 = max(x1, min(ax2, bx2));
+        int y1 = max(ay1, by1);
+        int y2 = max(y1, min(ay2, by2));
         return area1 + area2 - (x2 - x1) * (y2 - y1);
     }
 };
