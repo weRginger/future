@@ -43,7 +43,7 @@ class Solution {
 public:
     ListNode *mergeKLists(vector<ListNode *> &lists) {
         auto comp = [](ListNode* a, ListNode* b) {
-            return a->val > b->val;
+            return a->val > b->val; // min heap comparator
         };
         priority_queue<ListNode *, vector<ListNode *>, decltype(comp)>  q(comp);
         for(auto l : lists) {
