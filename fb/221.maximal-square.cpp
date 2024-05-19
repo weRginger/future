@@ -7,6 +7,7 @@ public:
         int rows = matrix.size(), cols = rows > 0 ? matrix[0].size() : 0;
         vector<int> dp(cols + 1, 0);
         int maxsqlen = 0, prev = 0;
+        // i and j start from 1 since we want to use row 0 and col 0 as basis value with all 0s
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= cols; j++) {
                 int temp = dp[j];
