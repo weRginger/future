@@ -16,8 +16,7 @@ private:
         if(l < r) {
             cur += ')';
             helper(l, r - 1, cur, ans);
-            // ziqi: no need the following backtrack line since no other operators after it
-            // cur.resize(len); 
+            cur.resize(len); 
         }
     }
 public:
