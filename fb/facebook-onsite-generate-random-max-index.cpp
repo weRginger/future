@@ -1,3 +1,13 @@
+/*
+https://leetcode.com/discuss/interview-question/451431/facebook-onsite-generate-random-max-index
+Given an array of integers arr, randomly return an index of the maximum value seen by far.
+Example:
+Input: [11, 30, 2, 30, 30, 30, 6, 2, 62, 62]
+Expected sample output: [0, 1, 1, 2, 3, 3, 3, 3, 8, 9]
+
+Solution: reservoir sampling
+*/
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
