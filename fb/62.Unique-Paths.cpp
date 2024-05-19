@@ -3,18 +3,17 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        if(m == 1 || n == 1) return 1;
-        vector<int> up(n, 1);
-        int left = 1;
-        int ans = 0;
+        vector<int> dp(n, 1);
         for(int i = 1; i < m; i++) {
+            int left = 1;
             for(int j = 1; j < n; j++) {
-                if(j == 1) left = 1;
-                ans = left + up[j];
-                up[j] = ans;
-                left = ans;
+                dp[j] = left + dp[j];
+                left = dp[j];
+                // above two lines of code could be replaced as 
+                // dp[j] = dp[j-1] + dp[j];
+                // since left == dp[j-1] (only 1 way, which is going down) 
             }
         }
-        return ans;
+        return dp[n-1];
     }
 };
