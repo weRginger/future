@@ -1,5 +1,6 @@
 // Time O(mn)
 // Space O(m)
+// see lc details
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
