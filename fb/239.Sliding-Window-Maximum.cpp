@@ -3,16 +3,22 @@
 // Space O(k)
 class MonotonicQueue {
 public:
+  // push an element to the queue
+  // will pop all element smaller than e (equal will be kept)
   void push(int e) {
     while(!data_.empty() && e > data_.back()) data_.pop_back();
     data_.push_back(e);
   } 
-  
+
+  // pop the max element
   void pop() {
     data_.pop_front();
   }
-  
-  int max() const { return data_.front(); }
+
+  // get the max element
+  int max() const {
+    return data_.front();
+  }
 private:
   deque<int> data_;
 };
