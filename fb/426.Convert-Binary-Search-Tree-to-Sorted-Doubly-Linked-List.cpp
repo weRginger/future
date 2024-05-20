@@ -1,5 +1,6 @@
 // Time O(n)
 // Space O(H)
+// same idea as recursive
 class Solution {
 public:
     Node* treeToDoublyList(Node* root) {
