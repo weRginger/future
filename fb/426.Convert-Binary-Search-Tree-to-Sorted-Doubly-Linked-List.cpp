@@ -1,6 +1,44 @@
 // Time O(n)
 // Space O(H)
 class Solution {
+public:
+    Node* treeToDoublyList(Node* root) {
+        Node *node=root;
+        stack<Node*> st;
+
+        Node *head=nullptr,*cur=nullptr,*prev=nullptr;
+        while(!st.empty()||node) {
+            if(node) {
+                st.push(node);
+                node=node->left;
+            }
+            else
+            {
+               if(!head) {
+                   head=st.top();
+                   prev=st.top();
+                   cur=st.top();
+               }
+               else
+               {
+                   cur=st.top();
+                   prev->right=cur;
+                   cur->left=prev;
+                   prev=cur;
+               }
+               node=st.top()->right;
+               st.pop();
+            }
+        }
+        if(cur) cur->right=head;
+        if(head) head->left=cur;
+        return head;
+    }
+};
+
+// Time O(n)
+// Space O(H)
+class Solution {
   // the smallest (first) and the largest (last) nodes
   Node* first = NULL;
   Node* last = NULL;
