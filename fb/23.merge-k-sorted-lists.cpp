@@ -41,27 +41,24 @@ public:
 // Space O(k)
 class Solution {
 public:
-    ListNode *mergeKLists(vector<ListNode *> &lists) {
-        auto comp = [](ListNode* a, ListNode* b) {
-            return a->val > b->val; // min heap; c++ pq default is max heap
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        auto comp = [](const ListNode* a, const ListNode* b) {
+            return a->val > b->val; // min heap; c++ default is max heap
         };
-        priority_queue<ListNode *, vector<ListNode *>, decltype(comp)>  q(comp);
-        for(auto l : lists) {
-            if(l)  q.push(l);
+        priority_queue<ListNode*, vector<ListNode*>, decltype(comp)> pq(comp);
+        for(auto list: lists) {
+            if(list) pq.push(list);
         }
-        if(q.empty())  return NULL;
-
-        ListNode* result = q.top();
-        q.pop();
-        if(result->next) q.push(result->next);
-        ListNode* tail = result;
-        while(!q.empty()) {
-            tail->next = q.top();
-            q.pop();
-            tail = tail->next;
-            if(tail->next) q.push(tail->next);
+        ListNode dummy(0);
+        ListNode* head = &dummy;
+        while(!pq.empty()) {
+            ListNode* cur = pq.top();
+            pq.pop();
+            head->next = cur;
+            head = cur;
+            if(cur->next) pq.push(cur->next);
         }
-        return result;
+        return dummy.next;
     }
 };
 
