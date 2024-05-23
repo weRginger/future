@@ -1,22 +1,14 @@
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+// Time O(nlogn)
+// Space O(1)
 class Solution {
 public:
-    bool canAttendMeetings(vector<Interval>& intervals) {
-        if(intervals.empty()) return true;
-        sort(intervals.begin(), intervals.end(), [](Interval a, Interval b)
-        {
-            return a.start < b.start;
-        });
+    bool canAttendMeetings(vector<vector<int>>& intervals) {
+        auto comp = [](const vector<int>& a, const vector<int>& b) {
+            return a[0] < b[0];
+        };
+        sort(intervals.begin(), intervals.end(), comp);
         for(int i = 1; i < intervals.size(); i++) {
-            if(intervals[i].start < intervals[i-1].end) {
+            if(intervals[i][0] < intervals[i-1][1]) {
                 return false;
             }
         }
