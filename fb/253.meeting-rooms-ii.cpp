@@ -18,6 +18,8 @@ public:
         priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> pq(comp);
         int s = intervals.size();
         for(int i = 0; i < s; i++) {
+            // if new meeting start time is after any existing meeting's earlist end time
+            // then, the new meeting could reuse that existing meeting's room
             while(!pq.empty() && pq.top()[1] <= intervals[i][0]) {
                 pq.pop();
             }
