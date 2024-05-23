@@ -13,7 +13,7 @@ public:
             return a[0] < b[0];
         });
         auto comp = [](vector<int> a, vector<int> b) {
-            return a[1] > b[1];
+            return a[1] > b[1]; // min heap on internal end
         };
         priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> pq(comp);
         int s = intervals.size();
