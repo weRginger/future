@@ -1,3 +1,6 @@
+// n be the number of nodes
+// Time O(n) if using optimization. below code does not, so it is O(n^2)
+// Space O(n)
 class Solution {
 public:
     bool validTree(int n, vector<pair<int, int>>& edges) {
