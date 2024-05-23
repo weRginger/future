@@ -1,49 +1,24 @@
 // Time O(nlogn)
 // Space O(n)
-// Source: https://www.youtube.com/watch?v=jUpuIio_oYo
+// Author: Ziqi
 class Solution {
 public:
-    int minMeetingRooms(vector<Interval>& intervals) {
-        vector<int> starts, ends;
-        for (auto i : intervals) {
-            starts.push_back(i.start);
-            ends.push_back(i.end);
-        }
-        sort(starts.begin(), starts.end());
-        sort(ends.begin(), ends.end());
-        int end = 0, ans = 0;
-        int s = intervals.size();
-        for (int i = 0; i < s; i++) {
-            if(starts[i] < ends[end]) {
-                ans++;
-            }
-            else {
-                end++;
-            }
-        }
-        return ans;
-    }
-};
-
-// Author: Ziqi
-class Solution2 {
-public:
-    int minMeetingRooms(vector<Interval>& intervals) {
+    int minMeetingRooms(vector<vector<int>>& intervals) {
         if(intervals.empty()) {
             return 0;
         }
         int ans = 0;
-        sort(intervals.begin(), intervals.end(), [](Interval a, Interval b)
+        sort(intervals.begin(), intervals.end(), [](const vector<int>& a, const vector<int>& b)
         {
-            return a.start < b.start;
+            return a[0] < b[0];
         });
-        auto comp = [](Interval a, Interval b) {
-            return a.end > b.end;
+        auto comp = [](vector<int> a, vector<int> b) {
+            return a[1] > b[1];
         };
-        priority_queue<Interval, vector<Interval>, decltype(comp)> pq(comp);
+        priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> pq(comp);
         int s = intervals.size();
         for(int i = 0; i < s; i++) {
-            while(!pq.empty() && pq.top().end <= intervals[i].start) {
+            while(!pq.empty() && pq.top()[1] <= intervals[i][0]) {
                 pq.pop();
             }
             pq.push(intervals[i]);
@@ -52,13 +27,3 @@ public:
         return ans;
     }
 };
-
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
