@@ -37,13 +37,13 @@ private:
             ans.push_back(curr + single + string(curr.rbegin(),curr.rend()));
             return;
         }
-        for(auto& i : perm) {
+        for(auto& i : perm) { // permutation
             if(i.second > 0) {
                 curr.push_back(i.first);
                 i.second--;
                 helper(perm, curr, count, ans, single);
-                i.second++;
-                curr.pop_back();
+                i.second++; // backtrack
+                curr.pop_back(); // backtrack
             }
         }
     }
