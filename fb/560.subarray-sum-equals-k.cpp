@@ -1,6 +1,6 @@
-// Source: https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
 // Time O(n)
 // Space O(n)
+// Cumulative Sum
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
