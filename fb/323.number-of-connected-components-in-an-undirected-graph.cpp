@@ -1,3 +1,34 @@
+// bfs
+// Time O(E+V)
+// Space O(E+V)
+class Solution {
+public:
+    int countComponents(int n, vector<pair<int, int>>& edges) {
+        vector<unordered_set<int>> graph(n);
+        for (auto& e: edges) {
+            graph[e.first].insert(e.second);
+            graph[e.second].insert(e.first);
+        }
+        queue<int> q;
+        vector<bool> v(n, false);
+        int ans=0;
+        for (int i=0; i<n; ++i) {
+            if (v[i]) continue;
+            ans++;
+            q.push(i);
+            while (!q.empty()) {
+                auto curr=q.front();
+                q.pop();
+                v[curr]=true;
+                for (auto nei: graph[curr])
+                    if (!v[nei])
+                        q.push(nei);
+            }
+        }
+        return ans;
+    }
+};
+
 // union-find
 // Time O(E+V)
 // Space O(V)
@@ -68,35 +99,6 @@ public:
                 for (auto nei: graph[curr])
                     if (!v[nei])
                         s.push(nei);
-            }
-        }
-        return ans;
-    }
-};
-
-// bfs
-class Solution {
-public:
-    int countComponents(int n, vector<pair<int, int>>& edges) {
-        vector<unordered_set<int>> graph(n);
-        for (auto& e: edges) {
-            graph[e.first].insert(e.second);
-            graph[e.second].insert(e.first);
-        }
-        queue<int> q;
-        vector<bool> v(n, false);
-        int ans=0;
-        for (int i=0; i<n; ++i) {
-            if (v[i]) continue;
-            ans++;
-            q.push(i);
-            while (!q.empty()) {
-                auto curr=q.front();
-                q.pop();
-                v[curr]=true;
-                for (auto nei: graph[curr])
-                    if (!v[nei])
-                        q.push(nei);
             }
         }
         return ans;
