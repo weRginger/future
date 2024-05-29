@@ -1,18 +1,21 @@
 // Time O(n)
 // Space O(1)
 class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-        int n = s.size(), ans = 0;
-        unordered_map<char, int> um; // current index of character
-        // try to extend the range [i, j]
-        for (int j = 0, i = 0; j < n; j++) {
-            if (um.find(s[j]) != um.end()) {
-                i = max(um[s[j]], i);
-            }
-            ans = max(ans, j - i + 1);
-            um[s[j]] = j + 1;
-        }
-        return ans;
+ public:
+  int lengthOfLongestSubstring(string s) {
+    int ans = 0;
+    // The substring s[j + 1..i] has no repeating characters.
+    int j = -1;
+    // lastSeen[c] := the index of the last time c appeared
+    vector<int> lastSeen(128, -1);
+
+    for (int i = 0; i < s.length(); ++i) {
+      // Update j to lastSeen[s[i]], so the window must start from j + 1.
+      j = max(j, lastSeen[s[i]]);
+      ans = max(ans, i - j);
+      lastSeen[s[i]] = i;
     }
+
+    return ans;
+  }
 };
