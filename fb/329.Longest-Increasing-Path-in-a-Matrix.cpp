@@ -8,7 +8,7 @@ public:
         if(matrix.size() == 0) return 0;
         m = matrix.size();
         n = matrix[0].size();
-        vector<vector<int>> memo(m, vector<int>(n, 0));
+        vector<vector<int>> memo(m, vector<int>(n, 0)); // memo stores the longest increasing path starting with cell(i,j)
         int ans = 0;
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
