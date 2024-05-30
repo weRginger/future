@@ -1,6 +1,10 @@
 // Time O(n)
 // Space O(1)
 // Author: Ziqi
+// every power of 2, the bit pattern repeast itself by diff only on the added most significant bit
+// example below: the number from 4-7 differs from 0-3 only on the most significant bit
+// 0 00, 0 01, 0 10, 0 11
+// 1 00, 1 01, 1 10, 1 11
 class Solution {
 public:
     vector<int> countBits(int num) {
