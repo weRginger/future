@@ -26,7 +26,7 @@ public:
         for (int i = 0; i < grid.size(); ++i) {
             for (int j = 0; j < grid[i].size(); ++j) {
                 if (grid[i][j] == 1) {
-                    res = INT_MAX;
+                    res = INT_MAX; // need to set res back to INT_MAX
                     vector<vector<int>> dist = grid;
                     queue<pair<int, int>> q;
                     q.push({i, j});
