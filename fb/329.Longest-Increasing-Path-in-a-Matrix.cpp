@@ -28,6 +28,6 @@ private:
             if (0 <= x && x < m && 0 <= y && y < n && matrix[x][y] > matrix[i][j])
                 memo[i][j] = max(memo[i][j], dfs(matrix, x, y, memo));
         }
-        return ++memo[i][j];
+        return ++memo[i][j]; // to include the cell itself
     }
 };
