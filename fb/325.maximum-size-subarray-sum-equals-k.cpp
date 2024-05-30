@@ -5,12 +5,12 @@ public:
     int maxSubArrayLen(vector<int>& nums, int k) {
         int max_length = 0;
 
-        // accumulate the sum
+        // accumulate the sum by changing the input nums
         for (int i = 1; i < nums.size(); ++i) {
             nums[i] += nums[i - 1];
         }
 
-        unordered_map<int, int> sums;
+        unordered_map<int, int> sums; // k is cumulative sum, v is the index
         for (int i = 0; i < nums.size(); ++i) {
             if (nums[i] == k) {
                 max_length = i + 1;
