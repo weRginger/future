@@ -1,43 +1,34 @@
-// Time: if use recursion + memoization then O(|nums|*sum) 
-// Space: if use recursion + memoization then O(|nums|*sum) 
+// Let n be the number of array elements and m be the subSetSum.
+// Time O(m⋅n)
+// Space O(m⋅n). If use DP, could be O(m)
 class Solution {
-private:
-    bool canReach(vector<int>& nums, int n, int start, int target, int left) {
-        // n: nums.size()
-        // start: DFS from the index "start" to the end
-        // target:
-        // left: the sum of nums waiting to traversal,
-        //       i.e. sum of { nums[start], nums[start+1], ..., nums[n-1] }
-
-        for (int i = start; i < n; ++i) {
-            left -= nums[i];
-
-            // nums[i] > target: too greater to choose
-            if(nums[i] > target) return false;
-
-            // left == target: choose all the nums left
-            if(nums[i] == target || left == target) return true;
-
-            // choose nums[i] and go further
-            if(canReach(nums, n, i+1, target - nums[i], left)) return true;
-
-            // Do not choose nums[i], go further
-
-            // left < target: no need to traversal
-            if(left < target) return false;
+public:
+    bool canPartition(vector<int> &nums) {
+        int totalSum = 0;
+        // find sum of all array elements
+        for (int num : nums) {
+            totalSum += num;
         }
-        return false;
+        // if totalSum is odd, it cannot be partitioned into equal sum subset
+        if (totalSum % 2 != 0) return false;
+        int subSetSum = totalSum / 2;
+        int n = nums.size();
+        vector<vector<optional<bool>>> memo(n + 1, vector<optional<bool>>(subSetSum + 1, nullopt));
+        return dfs(nums, n - 1, subSetSum, memo);
     }
 
-public:
-    bool canPartition(vector<int>& nums) {
-        int total = 0;
-        for(int num: nums) total += num;
-        if(total & 1) return false;
-        // sort to be descending
-        sort(nums.begin(), nums.end(), [](int a, int b) {
-            return a > b;
-        });
-        return canReach(nums, nums.size(), 0, total >> 1, total);
+    bool dfs(vector<int> &nums, int n, int subSetSum, vector<vector<optional<bool>>> &memo) {
+        // Base Cases
+        if (subSetSum == 0)
+            return true;
+        if (n == 0 || subSetSum < 0)
+            return false;
+        // check if subSetSum for given n is already computed and stored in memo
+        if (memo[n][subSetSum] != nullopt) {
+            return (memo[n][subSetSum] == true);
+        }
+        bool result = dfs(nums, n - 1, subSetSum - nums[n - 1], memo) || // select nums[n-1]
+                dfs(nums, n - 1, subSetSum, memo); // not select nums[n-1]
+        return memo[n][subSetSum] = result;
     }
 };
