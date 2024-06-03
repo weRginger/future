@@ -1,12 +1,13 @@
 // source https://zxi.mytechroad.com/blog/tree/leetcode-437-path-sum-iii/
 // Time O(n)
 // Space O(H)
+// use prefix sum
 // Same idea to LC 560. Subarray Sum Equals K
 class Solution {
 public:
   int pathSum(TreeNode* root, int sum) {
     ans_ = 0;
-    sums_ = {{0, 1}};
+    sums_ = {{0, 1}}; // for the paths start from root
     pathSum(root, 0, sum);
     return ans_;
   }
@@ -16,11 +17,24 @@ private:
   
   void pathSum(TreeNode* root, int cur, int sum) {
     if (!root) return;
+    
+    // The current prefix sum
     cur += root->val;
+
+    // The number of times the curr_sum − k has occurred already, 
+    // determines the number of times a path with sum k 
+    // has occurred up to the current node
     ans_ += sums_[cur - sum];
+    
+    //Add the current sum into the hashmap
+    // to use it during the child node's processing
     ++sums_[cur];
     pathSum(root->left, cur, sum);
     pathSum(root->right, cur, sum);
+
+    // Remove the current sum from the hashmap
+    // in order not to use it during 
+    // the parallel subtree processing
     --sums_[cur];
   }
 };
