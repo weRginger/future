@@ -12,7 +12,7 @@ public:
         double current_product = x;
         while(N) {
             if(N & 1) 
-                ans = ans * current_product;
+                ans *= current_product;
             current_product = current_product * current_product;
             N >>= 1;
         }
