@@ -16,6 +16,7 @@ public:
             for (auto dir : dirs) {
                 int x = s[0] + dir[0];
                 int y = s[1] + dir[1];
+                // Move the ball in the chosen direction until it can.
                 while (x >= 0 && 
                        y >= 0 && 
                        x < maze.size() && 
@@ -24,6 +25,7 @@ public:
                     x += dir[0];
                     y += dir[1];
                 }
+                // Revert the last move to get the cell to which the ball rolls.
                 if (!visited[x - dir[0]][y - dir[1]]) {
                     q.push({x - dir[0], y - dir[1]});
                     visited[x - dir[0]][y - dir[1]] = true;
