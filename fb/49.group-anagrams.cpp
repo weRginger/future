@@ -21,7 +21,7 @@ private:
         }
         string ans = "";
         for(int i = 0; i < 26; i++) {
-            ans += to_string(h[i]) + ",";
+            ans += to_string(h[i]) + ","; // avoid hash collision
         }
         return ans;
     }
