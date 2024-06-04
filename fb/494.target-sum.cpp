@@ -1,4 +1,5 @@
-// Time O(l*n). The memo array of size l*n has been filled just once. Here, l refers to the range of sumsum and n refers to the size of nums array.
+// Time O(l*n). The memo array of size l*n has been filled just once. 
+// Here, l refers to the range of sum and n refers to the size of nums array.
 // Space O(l*n). The depth of recursion tree can go upto n. The memo array contains l*n elements.
 class Solution {
 public:
