@@ -32,6 +32,3 @@ public:
         return ans;
     }
 };
-        return s.substr((resCenter - maxLen) / 2, maxLen);
-    }
-};
