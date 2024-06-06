@@ -12,7 +12,8 @@ public:
                 i++;
             }
             else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/') {
-                lastOP = s[i++];
+                lastOP = s[i];
+                i++;
             }
             else {
                 int j = i+1;
