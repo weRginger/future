@@ -1,3 +1,31 @@
+// bfs
+// Time O(n)
+// Space O(H)
+// author ziqi
+class Solution {
+public:
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int ans = 0;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()) {
+            TreeNode* cur = q.front();
+            q.pop();
+            if(cur->val >= low && cur->val <= high) {
+                ans += cur->val;
+            }
+            if(cur->val > low && cur->left) {
+                q.push(cur->left);
+            }
+            if(cur->val < high && cur->right) {
+                q.push(cur->right);
+            }
+        }
+        return ans;
+    }
+};
+
+// dfs
 // Time O(n)
 // Space O(H)
 class Solution {
