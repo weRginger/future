@@ -14,6 +14,7 @@ public:
         int sz = heights.size();
         int mx = 0;
         vector<int> ans;
+        // find the current highest building to the right
         for(int i = sz - 1; i > -1; i--) {
             if(heights[i] > mx) {
                 ans.push_back(i);
