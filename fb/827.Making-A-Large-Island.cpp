@@ -30,6 +30,7 @@ public:
     int largestIsland(vector<vector<int>>& grid) {
         N = grid.size();
 
+        // mark each island with an index and calculate its area
         int index = 2;
         unordered_map<int, int> areas; // k starts from 2 since 0 and 1 are used by the original input
         for(int r = 0; r < N; r++) {
@@ -43,9 +44,13 @@ public:
         }
 
         int ans = 0;
+
+        // find the max without flip 0 to 1
         for(auto area: areas) {
             ans = max(ans, area.second);
         }
+
+        // find the max by flipping 0 to 1
         for(int r = 0; r < N; r++) {
             for(int c = 0; c < N; c++) {
                 if(grid[r][c] == 0) {
