@@ -1,6 +1,6 @@
 // Time O(n)
 // Space O(n)
-// ziqi new
+// author ziqi
 class Solution {
 public:
     vector<vector<int>> verticalOrder(TreeNode* root) {
