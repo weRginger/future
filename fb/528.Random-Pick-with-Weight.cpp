@@ -12,12 +12,11 @@ public:
             prefixSum += num;
             prefixSums.push_back(prefixSum);
         }
-        totalSum = prefixSum;
+        this.totalSum = prefixSum;
     }
     
     int pickIndex() {
-        float randNum = (float) rand() / RAND_MAX;
-        float target =  randNum * prefixSums.back();
+        double target = this.totalSum * Math.random();
         int l = 0;
         int r = prefixSums.size();
         while(l < r) {
