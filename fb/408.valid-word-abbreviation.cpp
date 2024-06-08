@@ -9,7 +9,7 @@ public:
         while (i < word.size() && j < abbr.size()) {
             if (abbr[j] >= '0' && abbr[j] <= '9') {
                 number = number * 10 + abbr[j] - '0';
-                if(number == 0) 
+                if(number == 0) // number cannot be 0
                     return false;
                 j++;
             } else {
@@ -21,7 +21,7 @@ public:
                 j++;
             }
         }
-        i += number;
+        i += number; // always to check for anything not handled within the loop
         return i == word.size() && j == abbr.size();
     }
 };
