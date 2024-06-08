@@ -13,7 +13,7 @@ public:
         while(N) {
             if(N & 1) 
                 ans *= current_product;
-            current_product = current_product * current_product;
+            current_product *= current_product;
             N >>= 1;
         }
         return ans;
