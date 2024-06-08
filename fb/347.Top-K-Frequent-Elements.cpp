@@ -35,7 +35,7 @@ public:
 };
 
 // Bucket sort
-// Time O(n)
+// Time O(max(max_freq, n))
 // Space O(n)
 class Solution {
 public:
