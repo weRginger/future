@@ -7,7 +7,12 @@ public:
     if (!root) return {};
     int min_x = INT_MAX;
     int max_x = INT_MIN;
-    map<pair<int, int>, multiset<int>> h; // {y, x} -> {vals}. NOTE: use map since it allows pair as key
+    
+    // {y, x} -> {vals}. NOTE: use map since it allows pair as key
+    // use {y, x} as key since we need to sort by level first
+    // use multiset since the node val could be the same. multiset usually impl by BST
+    map<pair<int, int>, multiset<int>> h;
+    
     traverse(root, 0, 0, h, min_x, max_x);
     vector<vector<int>> ans(max_x - min_x + 1);
     for (const auto& m : h) {      
