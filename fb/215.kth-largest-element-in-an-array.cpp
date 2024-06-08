@@ -11,6 +11,7 @@ private:
         // If use <, then when l == r, we will break the while loop too early 
         // and miss to check nums[l] (i.e. nums[r]) against pivot
         while(l <= r) {
+            // make sure left part is larger or equal to pivot AND right part is smaller than pivot
             if(nums[l] < pivot && nums[r] >= pivot) {
                 swap(nums[l++], nums[r--]);
             }
