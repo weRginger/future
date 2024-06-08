@@ -16,6 +16,6 @@ vector<pair<int, int>> mergeNonOverlappingIntervals(vector<pair<int, int>>& a, v
                 e = max(cur.second, e);
             }
         }
-        if (e > INT_MIN) res.emplace_back(s, e);
+        if (e > INT_MIN) res.push_back(s, e);
         return res;
     }
