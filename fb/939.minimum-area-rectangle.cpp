@@ -18,7 +18,7 @@ public:
             for(int j = i + 1; j < points.size(); j++) { 
                 int x1 = points[i][0], y1 = points[i][1];  // Coordinates of Point A
 		int x2 = points[j][0], y2 = points[j][1];  // Coordinates of Point B
-                if(x1 != x2 && y1 != y2) { // Point A & B must form a diagonal of the rectangle.
+                if(x1 != x2 && y1 != y2) { // the line of A and B could be a dot NOR parallel to x or y axis
                     if(point_set.find({x1, y2}) != point_set.end() && point_set.find({x2, y1}) != point_set.end()) {
                         minimum_area = min(minimum_area , abs(x1-x2) * abs(y1-y2)); // Store the minimum area possible
 		    }
