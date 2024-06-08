@@ -1,6 +1,6 @@
 // Time O(n)
 // Space O(1)
-// see LC for easier understanding, esp. see the figure
+// see LC for easier understanding, esp. see the figure https://leetcode.com/problems/next-permutation/editorial/
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
