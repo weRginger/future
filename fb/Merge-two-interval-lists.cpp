@@ -8,7 +8,7 @@ vector<pair<int, int>> mergeNonOverlappingIntervals(vector<pair<int, int>>& a, v
             else cur = a[i].first < b[j].first ? a[i++] : b[j++];
             if (cur.first > e) {
                 if (e > INT_MIN)
-                    res.emplace_back(s, e);
+                    res.push_back(s, e);
                 s = cur.first;
                 e = cur.second;
             }
