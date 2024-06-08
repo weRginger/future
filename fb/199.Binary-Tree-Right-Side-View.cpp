@@ -7,7 +7,7 @@ public:
         if (!root) return res;
         queue<TreeNode*> layer;
         layer.push(root);
-        while (layer.size()) {
+        while (!layer.empty()) {
             res.push_back(layer.front()->val);
             int len = layer.size();
             while (len--) {
