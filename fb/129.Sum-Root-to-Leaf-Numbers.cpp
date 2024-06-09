@@ -1,5 +1,33 @@
 // Time O(n)
 // Space O(H) -> could be reduced to O(1) if using Morris traversal. Go to LC for details.
+// author ziqi
+class Solution {
+public:
+    int sumNumbers(TreeNode* root) {
+        int sum = 0;
+        queue<pair<TreeNode*, int>> q;
+        q.push({root, root->val});
+        while(!q.empty()) {
+            auto f = q.front();
+            q.pop();
+            TreeNode* n = f.first;
+            int val = f.second;
+            if(n->left) {
+                q.push({n->left, 10 * val + n->left->val});
+            }
+            if(n->right) {
+                q.push({n->right, 10 * val + n->right->val});
+            }
+            if(!n->right && !n->left) {
+                sum += val;
+            }
+        }
+        return sum;
+    }
+};
+
+// Time O(n)
+// Space O(H)
 class Solution {
 public:
     int sumNumbers(TreeNode* root) {
