@@ -1,5 +1,31 @@
 // Time O(n)
 // Space O(h)
+// author ziqi iterative with stack
+class Solution {
+public:
+    int minDiffInBST(TreeNode* root) {
+        int minDistance = INT_MAX;
+        stack<TreeNode*> st;
+        TreeNode* pre = nullptr;
+        while(root || !st.empty()) {
+            while(root) {
+                st.push(root);
+                root = root->left;
+            }
+            root = st.top();
+            st.pop();
+            if(pre) {
+                minDistance = min(minDistance, root->val - pre->val);
+            }
+            pre = root;
+            root = root->right;
+        }
+        return minDistance;
+    }
+};
+
+// Time O(n)
+// Space O(h)
 class Solution {
 public:
     int minDistance = INT_MAX;
