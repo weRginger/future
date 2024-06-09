@@ -1,3 +1,5 @@
+google doc https://docs.google.com/document/d/1F07td-soyfrPUSabxqiCtGCdB-pN0ObGtlq6KrRgmY8/edit
+
 227 Basic Calculator II
 https://github.com/weRginger/future/blob/master/fb/227.Basic-Calculator-II.cpp
 
