@@ -13,14 +13,14 @@ public:
             }
             if(abs(target - root->val) < abs(target - ans)) {
                 ans = root->val;
-            } else if(abs(target - root->val) == abs(target - ans)) {
+            } else if(abs(target - root->val) == abs(target - ans)) { // handle tie case
                 if(root->val < ans) {
                     ans = root->val;
                 }
             }
             if(root->val > target) {
                 root = root->left;
-            } else {
+            } else { // cannot use "else if", otherwise, root could stuck with itself forever
                 root = root->right;
             }
         }
