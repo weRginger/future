@@ -1,5 +1,45 @@
 // Time O(|t| + |s|), where |t| to construct the vector and 2*|s| to move start and end
 // Space O(1)
+// author ziqi
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int m = s.size(), n = t.size();
+        if(m < n) return "";
+
+        unordered_map<char, int> char_count;
+        for(auto c : t) {
+            char_count[c]++;
+        }
+
+        int min_len = INT_MAX, count = 0, min_start_idx = -1;
+        for(int start = 0, end = 0; end < m; end++) {
+            if(char_count.count(s[end])) {
+                if(char_count[s[end]] > 0) {
+                    count++;
+                } 
+            }
+            char_count[s[end]]--;
+            while(count == n) {
+                if(end - start < min_len) {
+                    min_start_idx = start;
+                    min_len = end - start;
+                }
+                if(char_count[s[start]] >= 0) {
+                    count--;
+                }
+                char_count[s[start]]++;
+                start++;
+            }
+        }
+
+        if(min_start_idx != -1) {
+            return s.substr(min_start_idx, min_len + 1);
+        }
+        return "";
+    }
+};
+
 class Solution {
 public:
     string minWindow(string s, string t) {
