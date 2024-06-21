@@ -34,7 +34,7 @@ public:
         }
 
         if(min_start_idx != -1) {
-            return s.substr(min_start_idx, min_len + 1);
+            return s.substr(min_start_idx, min_len + 1); // min_len + 1 since end - start misses by 1
         }
         return "";
     }
