@@ -57,7 +57,7 @@ public:
                 counter--;
             // Decrease m[s[end]]. If char does not exist in t, m[s[end]] will be negative.
             m[s[end]]--;
-            end++;
+            end++; // NOTE: end++ here, so minLen in line 75 does not need to use minLen + 1, which is diff from ziqi's answer in line 37
             // When we found a valid window, move start to find smaller window.
             while (counter == 0) {
                 if (end - start < minLen) {
