@@ -1,17 +1,17 @@
 // Time O(n)
 // Space O(H)
+// author ziqi. note: the termination condition actually makes the function to search for p and q existence within root
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(!root || root == p || root == q)
+        if(!root || root == p || root == q) {
             return root;
+        }
         TreeNode* l = lowestCommonAncestor(root->left, p, q);
         TreeNode* r = lowestCommonAncestor(root->right, p, q);
-        if(l && r)
-            return root;
-        else if (l)
-            return l;
-        return r;
+        if(!l) return r;
+        if(!r) return l;
+        return root;
     }
 };
 
