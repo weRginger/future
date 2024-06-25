@@ -1,31 +1,13 @@
 // Time O(n)
 // Space O(1)
-// ziqi's solution
-class Solution {
-public:
-    void moveZeroes(vector<int>& nums) {
-        int sz = nums.size();
-        for(int i = 0, zero_idx = sz; i < sz; i++) {
-            if(nums[i] == 0) {
-                if(zero_idx == sz) { // using sz to indicate whether we have seen 0
-                    zero_idx = i;
-                }
-            } else {
-                if(zero_idx < i) { // means we have seen 0
-                    nums[zero_idx++] = nums[i];
-                    nums[i] = 0;
-                }
-            }
-        }
-    }
-};
-
-// Time O(n)
-// Space O(1)
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         for(int i = 0, startIdxOfConsecutiveZeros = 0; i < nums.size(); i++) {
+            // if currnet value is not 0, just swap with itself and both startIdxOfConsecutiveZeros and i advance to the next element. 
+            // NOTE: due to startIdxOfConsecutiveZeros++, it will point to the next unexamined element after this iteration
+            // then, if the next element (or more future ones) is 0, startIdxOfConsecutiveZeros will stay there
+            // finally, when meet another none-0, it will be swapped with startIdxOfConsecutiveZeros, which points to a 0
             if(nums[i] != 0) {
                 swap(nums[startIdxOfConsecutiveZeros++], nums[i]);
             }
