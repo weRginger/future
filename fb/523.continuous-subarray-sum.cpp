@@ -13,12 +13,13 @@ public:
         
         // key is sum % k, value is the corresponding index
         unordered_map<int, int> um;
-        um[0] = -1; // in case the satisfying sequence starting from index 0
         
         for(int i = 0; i < nums.size(); i++) {
             sum += nums[i];
-            if(k != 0)
-                sum = sum % k;
+            sum = sum % k;
+            if(i > 0 && sum == 0){ // start from index 0 and len >= 2
+                return true;
+            }
             if(um.count(sum)) {
                 if(i - um[sum] >= 2) // Q askes sequence len >= 2
                     return true;
