@@ -49,14 +49,14 @@ public:
         for(int r = 0; r < N; r++) {
             for(int c = 0; c < N; c++) {
                 if(grid[r][c] == 0) {
-                    unordered_set<int> seen;
+                    unordered_set<int> unique_areas;
                     for(auto n : neighbors(r, c)) {
                         if(grid[n/N][n%N] > 1) {
-                            seen.insert(grid[n/N][n%N]);
+                            unique_areas.insert(grid[n/N][n%N]);
                         }
                     }
                     int tmp = 1; // the current point
-                    for(auto i : seen) {
+                    for(auto i : unique_areas) {
                         tmp += areas[i];
                     }
                     ans = max(ans, tmp);
