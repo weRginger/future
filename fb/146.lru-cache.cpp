@@ -25,9 +25,9 @@ public:
     }
 
 private:
-    typedef list<int> LI;
-    typedef pair<int, LI::iterator> PII;
-    typedef unordered_map<int, PII> HIPII;
+    typedef list<int> LI; // track order of used key
+    typedef pair<int, LI::iterator> PII; // first is value, second is iterator to key for fast list lookup
+    typedef unordered_map<int, PII> HIPII; // key is the key, PII.first is the value
 
     void touch(HIPII::iterator it) {
         int key = it->first;
