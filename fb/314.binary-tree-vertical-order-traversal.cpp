@@ -2,35 +2,31 @@
 // Space O(n)
 // author ziqi
 class Solution {
-private:
-    unordered_map<int, vector<int>> mp; // k is the col and v is the values
-    int min_col = INT_MAX;
 public:
     vector<vector<int>> verticalOrder(TreeNode* root) {
-        if(!root) {
-            return {};
-        }
+        if(!root) return {};
+        int left_most = 0;
+        unordered_map<int, vector<int>> level_to_values;
         queue<pair<TreeNode*, int>> q;
         q.push({root, 0});
         while(!q.empty()) {
-            auto p = q.front();
-            mp[p.second].push_back(p.first->val);
-            min_col = min(min_col, p.second);
-            if(p.first->left) {
-                q.push({p.first->left, p.second-1});
-            }
-            if(p.first->right) {
-                q.push({p.first->right, p.second+1});
-            }
+            auto cur = q.front();
+            int lvl = cur.second;
+            TreeNode* node = cur.first;
             q.pop();
+            level_to_values[lvl].push_back(node->val);
+            if(node->left) {
+                q.push({node->left, lvl - 1});
+                left_most = min(left_most, lvl-1);
+            }
+            if(node->right) {
+                q.push({node->right, lvl + 1});
+            }
         }
-
         vector<vector<int>> ans;
-        while(mp.count(min_col)) {
-            ans.push_back(mp[min_col]);
-            min_col++;
+        while(level_to_values.count(left_most)) {
+            ans.push_back(level_to_values[left_most++]);
         }
-
         return ans;
     }
 };
