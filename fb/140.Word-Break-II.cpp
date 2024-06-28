@@ -20,7 +20,6 @@ private:
         
         vector<string> ans;
         
-        
         // s in dict, add it to the answer array
         // so we can avoid adding non-needed space when calling append() 
         if(dict.count(s)) 
