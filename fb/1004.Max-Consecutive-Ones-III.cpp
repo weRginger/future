@@ -1,5 +1,31 @@
 // Time O(n)
 // Space O(1)
+// author ziqi. note: similar approach to https://leetcode.com/problems/minimum-window-substring/description/
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int left = 0, right;
+        int ans = INT_MIN;
+        for (right = 0; right < nums.size(); right++) {
+            // If we included a zero in the window we reduce the value of k.
+            // Since k is the maximum zeros allowed in a window.
+            if (nums[right] == 0) k--;
+            // A negative K denotes we have consumed all allowed flips and window has
+            // more than allowed zeros, thus increment left pointer until we free up at least one flip
+            while (k < 0) {
+                // If the left element to be thrown out is zero we increase k.
+                if (nums[left] == 0) k++;
+                left++;
+            }
+            ans = max(ans, right - left + 1);
+        }
+        return ans;
+    }
+};
+
+
+// Time O(n)
+// Space O(1)
 // amazing elegant solution
 // details: https://leetcode.com/problems/max-consecutive-ones-iii/solution/
 class Solution {
