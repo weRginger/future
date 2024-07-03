@@ -23,7 +23,7 @@ private:
       if (t[0] == '0' && t.length() > 1) break; // 0X...
       long n = std::stol(t);
       if (n > INT_MAX) break;
-      if (pos == 0) {
+      if (pos == 0) { // first number, no operations could do yet
         dfs(num, target, l, t, n, n, ans);
         continue;
       }
@@ -35,7 +35,7 @@ private:
       dfs(num, target, pos + l, exp, -n, curr - n, ans);
       exp.resize(len);
       exp += '*' + t;
-      dfs(num, target, pos + l, exp, prev * n, curr - prev + prev * n, ans);
+      dfs(num, target, pos + l, exp, prev * n, curr - prev + prev * n, ans); // similar to 227. Basic Calculator II
       exp.resize(len);
       /*
       Following code will cause TLE since each recursion creats a copy of exp
