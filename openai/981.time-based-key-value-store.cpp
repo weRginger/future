@@ -1,3 +1,6 @@
+// Time O(logn) per get; O(1) per set
+// Space O(n)
+// author: ziqi. time limit exceed, even it is the same as LC answer
 class TimeMap {
 private:
     unordered_map<string, vector<pair<int,string>>> time_map;
