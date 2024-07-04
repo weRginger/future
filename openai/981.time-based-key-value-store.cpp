@@ -1,6 +1,6 @@
 // Time O(logn) per get; O(1) per set
 // Space O(n)
-// author: ziqi. time limit exceed, even it is the same as LC answer
+// author: ziqi
 class TimeMap {
 private:
     unordered_map<string, vector<pair<int,string>>> time_map;
@@ -19,20 +19,19 @@ public:
         if (timestamp < time_map[key][0].first) {
             return "";
         }
-        auto v = time_map[key];
-        int l = 0, r = v.size() - 1;
+        int l = 0, r = time_map[key].size() - 1;
         while(l + 1 < r) {
             int m = l + (r - l) / 2;
-            if(timestamp <= v[m].first) {
+            if(timestamp <= time_map[key][m].first) {
                 r = m;
             } else {
                 l = m;
             }
         }
-        if(v[r].first <= timestamp) {
-            return v[r].second;
-        } else if(v[l].first <= timestamp) {
-            return v[l].second;
+        if(time_map[key][r].first <= timestamp) {
+            return time_map[key][r].second;
+        } else if(time_map[key][l].first <= timestamp) {
+            return time_map[key][l].second;
         }
         return "";
     }
