@@ -5,7 +5,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> ans;
         if(candidates.empty()) return ans;
-        sort(candidates.begin(), candidates.end());
+        sort(candidates.begin(), candidates.end()); // sort and left > 0 for early termination
         vector<int> curr;
         helper(candidates, target, 0, curr, ans);
         return ans;
