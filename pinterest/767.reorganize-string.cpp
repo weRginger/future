@@ -45,6 +45,7 @@ public:
 
 // Time O(N⋅logk)
 // Space O(1)
+// author LC + ziqi(changed pq using pair)
 class Solution {
 public:
     string reorganizeString(string s) {
@@ -54,10 +55,13 @@ public:
         }
 
         // Max heap ordered by character counts
-        priority_queue<vector<int>> pq;
+        auto comp = [](const pair<int, char>& a, const pair<int, char>& b) {
+            return a.first < b.first;
+        };
+        priority_queue<pair<int, char>, vector<pair<int, char>>, decltype(comp)> pq(comp);
         for (int i = 0; i < 26; i++) {
             if (charCounts[i] > 0) {
-                pq.push(vector<int>{charCounts[i], i + 'a'});
+                pq.push({charCounts[i], i + 'a'});
             }
         }
         
@@ -65,9 +69,9 @@ public:
         while (!pq.empty()) {
             auto first = pq.top();
             pq.pop();
-            if (result.empty() || first[1] != result.back()) {
-                result += char(first[1]);
-                if (--first[0] > 0) {
+            if (result.empty() || first.second != result.back()) {
+                result += first.second;
+                if (--first.first > 0) {
                     pq.push(first);
                 }
             } else {
@@ -76,8 +80,8 @@ public:
                 }
                 auto second = pq.top();
                 pq.pop();
-                result += char(second[1]);
-                if (--second[0] > 0) {
+                result += second.second;
+                if (--second.first > 0) {
                     pq.push(second);
                 }
                 pq.push(first);
