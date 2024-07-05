@@ -1,6 +1,7 @@
 // Time complexity: O(S+Tlog(S)), where S is the length of source and T is the length of target.
 // Space complexity: O(S).
 // LC answer
+// LC has O(S+T), but won't want to learn how
 class Solution {
 public: 
     int shortestWay(string source, string target) {
