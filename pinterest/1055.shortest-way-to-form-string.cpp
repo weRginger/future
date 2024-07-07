@@ -13,7 +13,7 @@ public:
         }
 
         // The current index in source
-        int sourceIterator = 0;
+        int sourceIndex = 0;
 
         // Number of times we have to iterate through source to get target
         int count = 1;
@@ -28,15 +28,15 @@ public:
 
             // Binary search to find the index of the character in source next to the source iterator
             vector < int > indices = charToIndices[target[i] - 'a'];
-            int index = lower_bound(indices.begin(), indices.end(), sourceIterator) - indices.begin();
+            int index = lower_bound(indices.begin(), indices.end(), sourceIndex) - indices.begin();
 
             // If we have reached the end of the list, we need to iterate
             // through source again, hence first index of character in source.
             if (index == indices.size()) {
                 count++;
-                sourceIterator = indices[0] + 1; // use indices[0] for target[i], so advance sourceIterator with +1
+                sourceIndex = indices[0] + 1; // use indices[0] for target[i], so advance sourceIndex with +1
             } else {
-                sourceIterator = indices[index] + 1;
+                sourceIndex = indices[index] + 1;
             }
         }
 
