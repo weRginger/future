@@ -26,9 +26,10 @@ public:
           int y = cy + dirs[i + 1];
           if (x < 0 || y < 0 || x >= m || y >= n) continue;
           int o = co + grid[y][x];
-          if (o >= seen[y][x] || o > k) continue;
-          // means we see a path encountering less obstacles, which is more promissing.
-          // so we should try to expanding from it            
+          // if the current path encounters more obstacles than k or encounters equal or more obstacles than other paths (stored by seen), 
+          // there is no need to continue exploring based on this path.
+          // so, we should early stop (without pushing to the queue) 
+          if (o > k || o >= seen[y][x]) continue;
           seen[y][x] = o; 
           q.emplace(x, y, o);
         }
