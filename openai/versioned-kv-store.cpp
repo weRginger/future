@@ -67,7 +67,7 @@ private:
     vector<Bucket> buckets_;
 
     Bucket& get_bucket(const string& key) {
-        std::hash<std::string> hasher;
+        hash<string> hasher;
         size_t bucket_index = hasher(key) % num_buckets_;
         return buckets_[bucket_index];
     }
