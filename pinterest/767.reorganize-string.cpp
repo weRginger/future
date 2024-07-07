@@ -30,7 +30,7 @@ public:
         // Place rest of the letters in any order
         for (int i = 0; i < charCounts.size(); i++) {
             while (charCounts[i] > 0) {
-                if (index >= s.length()) {
+                if (index >= s.length()) { // all even spots are filled, move to odd spot 
                     index = 1;
                 }
                 ans[index] = char(i + 'a');
