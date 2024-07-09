@@ -14,13 +14,16 @@ public:
                 if(l > 0) {
                     l--;
                 } else {
-                    s[i] = '#'; // mark to delete 
+                    // mark to delete
+                    // cannot delete in place since it will mess up input s iteration from left to right
+                    s[i] = '#';  
                 }
             }
         }
         
         for(int i = S - 1; i >= 0; i--) {
             if(s[i] == '#') 
+                // ok to delete during the s iteration from right to left
                 s.erase(s.begin() + i);
             else if(s[i] == ')') {
                 r++;
