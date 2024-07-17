@@ -5,7 +5,7 @@ public:
     string simplifyPath(string path) {
         string res, tmp;
         // should not use stack since res needs to start from leftmost
-        // see line 20
+        // see line 22
         vector<string> stk; 
         istringstream ss(path);
         while(getline(ss,tmp,'/')) {
