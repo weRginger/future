@@ -6,9 +6,9 @@ public:
     int subarraySum(vector<int>& nums, int k) {
         int ans = 0, sum = 0;
         unordered_map<int, int> um;
-        um[0] = 1; // dealing with acceptable subarray starting from index 0
         for(auto i : nums) {
             sum += i;
+            if(sum == k) ans++; // dealing with acceptable subarray starting from index 0
             if(um.count(sum-k)) {
                 ans += um[sum-k];
             }
