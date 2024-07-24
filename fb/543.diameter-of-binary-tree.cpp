@@ -1,21 +1,26 @@
-// Time O(n)
-// Space O(H)
+// Time O(N)
+// Space O(N)
 class Solution {
+private:
+    int diameter = INT_MIN;
+
+    int helper(TreeNode* root) {
+        if(!root) return 0;
+        int l = helper(root->left);
+        int r = helper(root->right);
+
+        // update the diameter if left_path plus right_path is larger
+        // NOTE: since it is post-order traversal, no need to add 1 to l or r 
+        diameter = max(l + r, diameter);
+
+        // return the longest one between left_path and right_path;
+        // remember to add 1 for the path connecting the node and its parent
+        return max(l, r) + 1;
+    }
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root) return 0;
-        int ans = INT_MIN;
-        helper(root, ans);
-        return ans;
-    }
-
-private:
-    int helper(TreeNode* root, int& ans) {
-        if(!root) return -1;
-        int l = root->left ? helper(root->left, ans) + 1 : 0;
-        int r = root->right ? helper(root->right, ans) + 1 : 0;
-        ans = max(ans, l + r);
-        return max(l, r);
+        helper(root);
+        return diameter;
     }
 };
 
@@ -25,6 +30,8 @@ private:
  *     int val;
  *     TreeNode *left;
  *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
