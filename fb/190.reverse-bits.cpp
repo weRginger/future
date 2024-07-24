@@ -1,5 +1,6 @@
 // Time O(1)
 // Space O(1)
+// LC has more crazy ideas
 class Solution {
   public:
   uint32_t reverseBits(uint32_t n) {
